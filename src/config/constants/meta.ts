@@ -4,7 +4,7 @@ import { PageMeta } from './types'
 export const DEFAULT_META: PageMeta = {
   title: 'Snowswap',
   description: 'The most popular AMM on CRAB by user count! ',
-  image: 'https://snowswap.js.org/images/hero.png',
+  image: 'https://snowswap.xyz/images/hero.png',
 }
 
 export const getCustomMeta = (path: string, t: ContextApi['t']): PageMeta => {

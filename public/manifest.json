@@ -10,11 +10,6 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "favicon.ico",
-      "type": "image/x-icon",
-      "sizes": "256x256"
-    },
-    {
       "src": "logo.png",
       "type": "image/png",
       "sizes": "512x512"

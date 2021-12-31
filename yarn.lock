@@ -2876,10 +2876,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@snowswap/uikit@^0.60.1":
-  version "0.60.1"
-  resolved "https://registry.yarnpkg.com/@snowswap/uikit/-/uikit-0.60.1.tgz#23825e8905dc0add0004c0db0266429309eb85bc"
-  integrity sha512-D2Sa6aKeBSCjs1sgLug2Jb2w0Ml00yqYUn/ma5FFAYQl64tRQDDSXTKTdsFNk42LXYoYLeDcZDR8PggVn+n/fA==
+"@snowswap/uikit@^0.60.2":
+  version "0.60.2"
+  resolved "https://registry.yarnpkg.com/@snowswap/uikit/-/uikit-0.60.2.tgz#12c373025faecb35caf57f74571710987b0c50c6"
+  integrity sha512-gNpcCgtkp7B0yePzzwJFP0f6aFGuKpeKJZKdrF0VfOd1UZ6S/qQHKfsFfhzG7prdYEvnK9PkiOmBF7ZHicQOxA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"

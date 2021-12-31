@@ -26,7 +26,7 @@ export const mainnetTokens = {
   ring: new Token(
     MAINNET,
     '0x7399Ea6C9d35124d893B8d9808930e9d3F211501',
-    18,
+    9,
     'xRING',
     'Darwinia Network Native Token',
     'https://darwinia.network/',

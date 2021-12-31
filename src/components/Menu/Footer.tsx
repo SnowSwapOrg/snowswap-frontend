@@ -45,7 +45,7 @@ const Footer: React.FC<{ variant?: FooterVariant }> = ({ variant = 'default' }) 
       <Flex flexDirection={isSide ? 'column' : ['column', 'column', 'row']} alignItems="center">
         <LinkExternal
           id="darwiniaBridge"
-          href="https://darwinia.network/"
+          href="https://docs.darwinia.network/tutorials/wiki-tut-wormhole"
           ml={[0, 0, '40px']}
           mt={['20px', '20px', isSide ? '20px' : 0]}
           mb={['8px', '8px', 0]}

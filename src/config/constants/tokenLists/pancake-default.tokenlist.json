@@ -7,7 +7,7 @@
     "patch": 0
   },
   "tags": {},
-  "logoURI": "https://snowswap.js.org/logo.png",
+  "logoURI": "https://snowswap.xyz/logo.png",
   "keywords": ["snowswap", "default"],
   "tokens": [
     {
@@ -35,7 +35,7 @@
       "logoURI": "/images/tokens/0x2d2b97ea380b0185e9fdf8271d1afb5d2bf18329.svg"
     },
     {
-      "name": "Darwinia Network Native Token",
+      "name": "Darwinia Network Native Token (From Darwinia Network)",
       "symbol": "xRING",
       "address": "0x7399Ea6C9d35124d893B8d9808930e9d3F211501",
       "chainId": 44,
