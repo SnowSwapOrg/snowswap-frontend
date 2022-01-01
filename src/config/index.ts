@@ -10,7 +10,7 @@ BigNumber.config({
 export const BSC_BLOCK_TIME = 3
 
 export const BASE_BSC_SCAN_URLS = {
-  [ChainId.MAINNET]: 'https://crab.subscan.io',
+  [ChainId.MAINNET]: 'https://crab.subview.xyz',
   [ChainId.TESTNET]: 'https://testnet.hecoinfo.com',
 }
 
