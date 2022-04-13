@@ -31,6 +31,23 @@ export const mainnetTokens = {
     'Darwinia Network Native Token',
     'https://darwinia.network/',
   ),
+  usdt: new Token(
+    MAINNET,
+    '0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
+    18,
+    'USDT',
+    'cbridge - USD Coin',
+    'https://cbridge.celer.network',
+  ),
+  usdc: new Token(
+    MAINNET,
+    '0x81ECac0D6Be0550A00FF064a4f9dd2400585FE9c',
+    18,
+    'USDC',
+    'cbridge - USD Coin',
+    'https://cbridge.celer.network',
+  ),
+  testring: new Token(MAINNET, '0x9aC276FBcb568Eb9f4679B238efd1b6eA1898435', 9, 'testRING', 'testRING', ''),
 }
 
 export const testnetTokens = {

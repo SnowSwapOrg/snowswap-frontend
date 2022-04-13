@@ -79,6 +79,8 @@ interface FarmConfigBaseProps {
 export interface SerializedFarmConfig extends FarmConfigBaseProps {
   token: SerializedToken
   quoteToken: SerializedToken
+  rewardToken: SerializedToken
+  poolAddress: string
 }
 
 export interface DeserializedFarmConfig extends FarmConfigBaseProps {

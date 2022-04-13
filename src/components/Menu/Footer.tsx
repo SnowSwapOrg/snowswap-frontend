@@ -50,7 +50,16 @@ const Footer: React.FC<{ variant?: FooterVariant }> = ({ variant = 'default' }) 
           mt={['20px', '20px', isSide ? '20px' : 0]}
           mb={['8px', '8px', 0]}
         >
-          {t('How to use Darwinia Bridger')}
+          {t('How to use Wormhole Bridger (xRING, KTON)')}
+        </LinkExternal>
+        <LinkExternal
+          id="darwiniaBridge"
+          href="https://cbridge.celer.network/"
+          ml={[0, 0, '40px']}
+          mt={['20px', '20px', isSide ? '20px' : 0]}
+          mb={['8px', '8px', 0]}
+        >
+          {t('How to use Celer cBridge (USDC, USDT)')}
         </LinkExternal>
       </Flex>
       {isSide && <Flex flexGrow={1} />}

@@ -1,4 +1,4 @@
-import { MenuItemsType, DropdownMenuItemType, menuStatus } from '@snowswap/uikit'
+import { MenuItemsType } from '@snowswap/uikit'
 import { ContextApi } from 'contexts/Localization/types'
 
 export type ConfigMenuItemsType = MenuItemsType & { hideSubNav?: boolean }
@@ -21,12 +21,13 @@ const config: (t: ContextApi['t']) => ConfigMenuItemsType[] = (t) => [
     ],
   },
   {
-    label: t('Earn ( Plan )'),
+    label: t('Earn'),
     href: '/farms',
     icon: 'Earn',
+    showItemsOnMobile: false,
     items: [
       {
-        label: t('Earn ( Plan )'),
+        label: t('Farms'),
         href: '/farms',
       },
     ],

@@ -1750,5 +1750,7 @@
   "Unwrap": "解除包裝",
   "Go to IFO": "前往 IFO",
   "Phishing warning: ": "釣魚警告： ",
-  "please make sure you're visiting https://snowswap.xyz - check the URL carefully.": "請確保您造訪的是 https://snowswap.xyz；請仔細檢查網址。"
+  "please make sure you're visiting https://snowswap.xyz - check the URL carefully.": "請確保您造訪的是 https://snowswap.xyz；請仔細檢查網址。",
+  "How to use Wormhole Bridger (xRING, KTON)": "如何使用 Wormhole 橋 (xRING, KTON)",
+  "How to use Celer cBridge (USDC, USDT)": "如何使用 Celer cBridge 橋 (USDC, USDT)"
 }

@@ -10,7 +10,7 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [mainnetTokens.wbnb, mainnetTokens.ring],
+  [ChainId.MAINNET]: [mainnetTokens.wbnb, mainnetTokens.ring, mainnetTokens.usdt, mainnetTokens.usdc],
   [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.ring],
 }
 
@@ -84,3 +84,5 @@ export const BLOCKED_ADDRESSES: string[] = [
   '0xA7e5d5A720f06526557c513402f2e6B5fA20b008',
   '0x8576aCC5C05D6Ce88f4e49bf65BdF0C62F91353C',
 ]
+
+export { default as farmsConfig } from './farms'

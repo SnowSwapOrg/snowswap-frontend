@@ -4,7 +4,7 @@ import { PoolCategory } from 'config/constants/types'
 import tokens from 'config/constants/tokens'
 
 // Addresses
-import { getAddress, getMulticallAddress } from 'utils/addressHelpers'
+import { getAddress, getFarmChefAddress, getMulticallAddress } from 'utils/addressHelpers'
 
 // ABI
 import profileABI from 'config/abi/pancakeProfile.json'
@@ -41,6 +41,8 @@ import nftMarketAbi from 'config/abi/nftMarket.json'
 import nftSaleAbi from 'config/abi/nftSale.json'
 import pancakeSquadAbi from 'config/abi/pancakeSquad.json'
 import erc721CollectionAbi from 'config/abi/erc721collection.json'
+import farmStakerAbi from 'config/abi/farmStaker.json'
+import farmChefAbi from 'config/abi/farmChef.json'
 import { ChainLinkOracleContract, FarmAuctionContract, PancakeProfileContract, PredictionsContract } from './types'
 
 const getContract = (abi: any, address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
@@ -71,4 +73,10 @@ export const getMulticallContract = (signer?: ethers.Signer | ethers.providers.P
 }
 export const getErc721CollectionContract = (signer?: ethers.Signer | ethers.providers.Provider, address?: string) => {
   return getContract(erc721CollectionAbi, address, signer)
+}
+export const getFarmStakerContract = (address: string, signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(farmStakerAbi, address, signer)
+}
+export const getFarmChefContract = (signer?: ethers.Signer | ethers.providers.Provider) => {
+  return getContract(farmChefAbi, getFarmChefAddress(), signer)
 }

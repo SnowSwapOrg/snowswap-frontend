@@ -18,3 +18,7 @@ export const getVaultPoolAddress = (vaultKey: VaultKey) => {
   }
   return getAddress(addresses[vaultKey])
 }
+
+export const getFarmChefAddress = () => {
+  return getAddress(addresses.farmChef)
+}

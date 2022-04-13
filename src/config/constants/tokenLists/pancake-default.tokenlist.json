@@ -49,6 +49,22 @@
       "chainId": 44,
       "decimals": 18,
       "logoURI": "/images/tokens/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
+    },
+    {
+      "name": "cbridge - USD Coin",
+      "symbol": "USDT",
+      "address": "0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98",
+      "chainId": 44,
+      "decimals": 18,
+      "logoURI": "/images/tokens/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
+    },
+    {
+      "name": "cbridge - USD Coin",
+      "symbol": "USDC",
+      "address": "0x81ECac0D6Be0550A00FF064a4f9dd2400585FE9c",
+      "chainId": 44,
+      "decimals": 18,
+      "logoURI": "/images/tokens/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
     }
   ]
 }

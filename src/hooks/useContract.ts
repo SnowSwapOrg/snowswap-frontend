@@ -7,9 +7,9 @@ import {
   getIfoV2Contract,
   getErc721Contract,
   getErc721CollectionContract,
+  getFarmChefContract,
 } from 'utils/contractHelpers'
 import { getMulticallAddress } from 'utils/addressHelpers'
-import { VaultKey } from 'state/types'
 
 // Imports below migrated from Exchange useContract.ts
 import { Contract } from '@ethersproject/contracts'
@@ -22,6 +22,7 @@ import ERC20_ABI from '../config/abi/erc20.json'
 import WETH_ABI from '../config/abi/weth.json'
 import multiCallAbi from '../config/abi/Multicall.json'
 import { getContract, getProviderOrSigner } from '../utils'
+import farmStakerAbi from '../config/abi/farmStaker.json'
 
 /**
  * Helper hooks to get specific contracts (by ABI)
@@ -120,4 +121,13 @@ export function usePairContract(pairAddress?: string, withSignerIfPossible?: boo
 
 export function useMulticallContract(): Contract | null {
   return useContract(getMulticallAddress(), multiCallAbi, false)
+}
+
+export const useFarmStakerContract = (address: string, withSignerIfPossible?: boolean): Contract | null => {
+  return useContract(address, farmStakerAbi, withSignerIfPossible)
+}
+
+export const useFarmChefContract = () => {
+  const { library } = useActiveWeb3React()
+  return useMemo(() => getFarmChefContract(library), [library])
 }

@@ -22,7 +22,7 @@ const NotFound = () => {
         {/* <LogoIcon width="64px" mb="8px" /> */}
         <Heading scale="xxl">🌨️</Heading>
         <Heading scale="xxl" mb="30px">
-          <pre>&#47;** Coding **&#47;</pre>
+          <pre>&#47;** Ready **&#47;</pre>
         </Heading>
         {/* <Text mb="16px">{t('Oops, page not found.')}</Text> */}
         <Button as={Link} to="/swap" scale="sm">
