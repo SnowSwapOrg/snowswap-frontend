@@ -34,7 +34,7 @@ export const mainnetTokens = {
   usdt: new Token(
     MAINNET,
     '0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98',
-    18,
+    6,
     'USDT',
     'cbridge - USD Coin',
     'https://cbridge.celer.network',
@@ -42,7 +42,7 @@ export const mainnetTokens = {
   usdc: new Token(
     MAINNET,
     '0x81ECac0D6Be0550A00FF064a4f9dd2400585FE9c',
-    18,
+    6,
     'USDC',
     'cbridge - USD Coin',
     'https://cbridge.celer.network',
