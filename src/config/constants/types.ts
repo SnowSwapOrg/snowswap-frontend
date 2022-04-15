@@ -81,6 +81,8 @@ export interface SerializedFarmConfig extends FarmConfigBaseProps {
   quoteToken: SerializedToken
   rewardToken: SerializedToken
   poolAddress: string
+  startTime: number
+  rewardsDuration: number
 }
 
 export interface DeserializedFarmConfig extends FarmConfigBaseProps {

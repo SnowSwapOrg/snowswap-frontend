@@ -9,15 +9,31 @@ const farms: SerializedFarmConfig[] = [
    */
   {
     pid: 1,
-    lpSymbol: 'CRAB-xRING LP',
+    lpSymbol: 'USDT-xRING LP',
     lpAddresses: {
-      44: '0x7f08bC6a84FfC8Fdc5C96FC641E643680018c071',
+      44: '0x29BF15B31029c889E397Cc153C1F225e200581BC',
       256: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
     },
-    token: serializedTokens.wbnb,
+    token: serializedTokens.usdt,
     quoteToken: serializedTokens.ring,
-    rewardToken: serializedTokens.testring,
-    poolAddress: '0x0C9873496Ae80661e6eA92AF540dAd8Bc1ae1002',
+    rewardToken: serializedTokens.ring,
+    poolAddress: '0x85A1b1c1f8Fc999E8497b62b130aAe8f3B15Cf86',
+    startTime: 1650438000000,
+    rewardsDuration: 15552000,
+  },
+  {
+    pid: 2,
+    lpSymbol: 'USDC-CRAB LP',
+    lpAddresses: {
+      44: '0x75D4D59991D388Dd0e1c5224AF605a3E79e1f17e',
+      256: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
+    },
+    token: serializedTokens.usdc,
+    quoteToken: serializedTokens.wbnb,
+    rewardToken: serializedTokens.wbnb,
+    poolAddress: '0x426C4cd3C890AD717351550b7Ec221b36cbA0D72',
+    startTime: 1650438000000,
+    rewardsDuration: 15552000,
   },
 ]
 

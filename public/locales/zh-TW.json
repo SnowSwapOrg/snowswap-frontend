@@ -1752,5 +1752,9 @@
   "Phishing warning: ": "釣魚警告： ",
   "please make sure you're visiting https://snowswap.xyz - check the URL carefully.": "請確保您造訪的是 https://snowswap.xyz；請仔細檢查網址。",
   "How to use Wormhole Bridger (xRING, KTON)": "如何使用 Wormhole 橋 (xRING, KTON)",
-  "How to use Celer cBridge (USDC, USDT)": "如何使用 Celer cBridge 橋 (USDC, USDT)"
+  "How to use Celer cBridge (USDC, USDT)": "如何使用 Celer cBridge 橋 (USDC, USDT)",
+  "My Share": "我的份額",
+  "Unclaimed": "未取回",
+  "Earliest Start Time": "最早開啓時間",
+  "Rewards Duration": "獎勵周期"
 }

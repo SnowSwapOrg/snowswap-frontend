@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react'
 import styled, { keyframes, css } from 'styled-components'
-import { Button, Text, Flex, ChevronDownIcon, useDelayedUnmount, useMatchBreakpoints } from '@snowswap/uikit'
+import { Button, Text, Flex, ChevronDownIcon, useDelayedUnmount, useMatchBreakpoints, Box } from '@snowswap/uikit'
 import { SerializedFarmConfig } from 'config/constants/types'
 import { useFarmChefContract, useFarmStakerContract } from 'hooks/useContract'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -18,7 +18,8 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { useTranslation } from 'contexts/Localization'
 import { getLpContract } from 'utils/contractHelpers'
 import { TokenImage } from 'components/TokenImage'
-import { useFarmChefGetStakerAddress } from '../hooks/useFarmChef'
+import getTimePeriods from 'utils/getTimePeriods'
+import formatTimePeriod from 'utils/formatTimePeriod'
 import {
   useFarmStakerBalanceOf,
   useFarmStakerEarned,
@@ -38,13 +39,13 @@ const expandAnimation = keyframes`
     max-height: 0px;
   }
   to {
-    max-height: 500px;
+    max-height: 800px;
   }
 `
 
 const collapseAnimation = keyframes`
   from {
-    max-height: 500px;
+    max-height: 800px;
   }
   to {
     max-height: 0px;
@@ -64,10 +65,11 @@ const Container = styled.div<{ expanded }>`
   background: ${({ theme }) => theme.colors.background};
   display: flex;
   width: 100%;
-  flex-direction: column-reverse;
+  /* flex-direction: column-reverse; */
+  flex-direction: column;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    flex-direction: row;
+    flex-direction: column;
     padding: 16px 32px;
   }
   margin-top: 10px;
@@ -113,6 +115,11 @@ const StyledMobileTr = styled.tr`
     padding: 8px;
   }
 `
+const StyledBalanceWithLink = styled.span`
+  color: ${({ theme }) => theme.colors.primary};
+  text-decoration: underline;
+  cursor: pointer;
+`
 
 const FarmCard: React.FC<Props> = ({ farm }) => {
   const { t } = useTranslation()
@@ -125,7 +132,6 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
 
   const farmChef = useFarmChefContract()
   const stakerAddress = farm.poolAddress
-  console.log('🚀 ~ file: FarmCard.tsx ~ line 119 ~ stakerAddress', stakerAddress)
 
   const farmStakerContract = useFarmStakerContract(stakerAddress, true)
   const totalSupply = useFarmStakerTotalSupply(farmStakerContract)
@@ -157,7 +163,7 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
     farmStakerContract,
     getLpContract(getAddress(farm.lpAddresses), library.getSigner()),
     () => {
-      console.log(11)
+      console.log('success')
     },
   )
 
@@ -217,15 +223,18 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
           <Text>{farm.lpSymbol}</Text>
         </td>
         <td>
-          <Label>Total</Label>
-          <Text>{getFullDisplayBalance(totalSupply, 18, 4)}</Text>
+          <Label>{t('Total')}</Label>
+          <Text>{getFullDisplayBalance(totalSupply, 18, 12)}</Text>
         </td>
         <td>
-          <Label>My Staking</Label>
-          <Text>{getFullDisplayBalance(myStaking, 18, 4)}</Text>
+          <Label>{t('My Share')}</Label>
+          <Text>
+            {getFullDisplayBalance(myStaking, 18, 12)} (
+            {myStaking.eq(0) ? '0' : myStaking.div(totalSupply).multipliedBy(100).toFixed(2)}%)
+          </Text>
         </td>
         <td>
-          <Label>Unclaimed</Label>
+          <Label>{t('Unclaimed')}</Label>
           <Text>
             {getFullDisplayBalance(earned, farm.rewardToken.decimals, 4)} {farm.rewardToken.symbol}
           </Text>
@@ -247,8 +256,17 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
               <Flex justifyContent="space-between" width="100%" flexDirection={isMobile ? 'column' : 'row'}>
                 <LiquidityBox flex="1" mx="0.25rem" mb="1rem" flexDirection="column">
                   <Flex pb="0.7rem" justifyContent="space-between">
-                    <Label>Stake</Label>
-                    <Label>Wallet Balance: {getFullDisplayBalance(lpBalance.balance, 18, 6)} </Label>
+                    <Label>{t('Stake')}</Label>
+                    <Label>
+                      {t('Balance')}:{' '}
+                      <StyledBalanceWithLink
+                        onClick={() => {
+                          setStakeValue(getFullDisplayBalance(lpBalance.balance, 18, 18))
+                        }}
+                      >
+                        {getFullDisplayBalance(lpBalance.balance, 18, 18)}
+                      </StyledBalanceWithLink>{' '}
+                    </Label>
                   </Flex>
                   <Flex pb="0.7rem">
                     <NumericalInput
@@ -274,11 +292,15 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
                       <Button
                         width="100%"
                         scale="sm"
+                        disabled={
+                          parseUnits(stakeValue.toString() || '0', 18).eq(BigNumber.from(0)) ||
+                          parseUnits(stakeValue.toString() || '0', 18).gt(BigNumber.from(lpBalance.balance.toString()))
+                        }
                         onClick={() => {
-                          onStake(parseUnits(stakeValue.toString(), 18).toString())
+                          onStake(parseUnits(stakeValue.toString() || '0', 18).toString())
                         }}
                       >
-                        Stake
+                        {t('Stake')}
                       </Button>
                     )}
                   </Flex>
@@ -286,8 +308,17 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
 
                 <LiquidityBox flex="1" mx="0.25rem" mb="1rem" flexDirection="column">
                   <Flex pb="0.7rem" justifyContent="space-between">
-                    <Label>Unstake</Label>
-                    <Label>My Staking: {getFullDisplayBalance(myStaking, 18, 6)}</Label>
+                    <Label>{t('Unstake')}</Label>
+                    <Label>
+                      {t('My Share')}:{' '}
+                      <StyledBalanceWithLink
+                        onClick={() => {
+                          setUnstakeValue(getFullDisplayBalance(myStaking, 18, 18))
+                        }}
+                      >
+                        {getFullDisplayBalance(myStaking, 18, 18)}
+                      </StyledBalanceWithLink>
+                    </Label>
                   </Flex>
                   <Flex pb="0.7rem">
                     <NumericalInput
@@ -302,11 +333,12 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
                     <Button
                       width="100%"
                       scale="sm"
+                      disabled={parseUnits(unstakeValue.toString() || '0', 18).gt(BigNumber.from(myStaking.toString()))}
                       onClick={() => {
-                        onUnstake(parseUnits(unstakeValue.toString(), 18).toString())
+                        onUnstake(parseUnits(unstakeValue.toString() || '0', 18).toString())
                       }}
                     >
-                      Unstake
+                      {t('Unstake')}
                     </Button>
                   </Flex>
                 </LiquidityBox>
@@ -318,12 +350,18 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
                     </Text>
                   </Flex>
                   <Flex>
-                    <Button width="100%" scale="sm" onClick={onHarvest}>
-                      Claim
+                    <Button disabled={earned.eq(0)} width="100%" scale="sm" onClick={onHarvest}>
+                      {t('Claim')}
                     </Button>
                   </Flex>
                 </LiquidityBox>
               </Flex>
+              <Box pb="2rem">
+                <Label>{t('Earliest Start Time')}:</Label>
+                <Text>{new Date(farm.startTime).toLocaleDateString(undefined)}</Text>
+                <Label>{t('Rewards Duration')}:</Label>
+                <Text> {formatTimePeriod(getTimePeriods(farm.rewardsDuration))}</Text>
+              </Box>
             </Container>
           </BackgroundTD>
         </tr>
