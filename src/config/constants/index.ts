@@ -33,13 +33,13 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
-  [ChainId.MAINNET]: [mainnetTokens.wbnb, mainnetTokens.ring],
+  [ChainId.MAINNET]: [mainnetTokens.wbnb, mainnetTokens.ring, mainnetTokens.usdt, mainnetTokens.usdc],
   [ChainId.TESTNET]: [testnetTokens.ring, testnetTokens.wbnb],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.MAINNET]: [mainnetTokens.ring, mainnetTokens.wbnb],
+  [ChainId.MAINNET]: [mainnetTokens.ring, mainnetTokens.wbnb, mainnetTokens.usdt, mainnetTokens.usdc],
   [ChainId.TESTNET]: [testnetTokens.ring, testnetTokens.wbnb],
 }
 

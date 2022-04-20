@@ -155,6 +155,31 @@ export function useSingleTokenSwapInfo(): { [key: string]: number } {
   }
 }
 
+export function useSingleTokenSwapInfoFromInput(
+  inputCurrencyId: string,
+  outputCurrencyId: string,
+): { [key: string]: number } {
+  const inputCurrency = useCurrency(inputCurrencyId)
+  const outputCurrency = useCurrency(outputCurrencyId)
+  const token0Address = getTokenAddress(inputCurrencyId)
+  const token1Address = getTokenAddress(outputCurrencyId)
+
+  const parsedAmount = tryParseAmount('1', inputCurrency ?? undefined)
+
+  const bestTradeExactIn = useTradeExactIn(parsedAmount, outputCurrency ?? undefined)
+  if (!inputCurrency || !outputCurrency || !bestTradeExactIn) {
+    return null
+  }
+
+  const inputTokenPrice = parseFloat(bestTradeExactIn?.executionPrice?.toSignificant(6))
+  const outputTokenPrice = 1 / inputTokenPrice
+
+  return {
+    [token0Address]: inputTokenPrice,
+    [token1Address]: outputTokenPrice,
+  }
+}
+
 // from the current swap inputs, compute the best trade and return it.
 export function useDerivedSwapInfo(): {
   currencies: { [field in Field]?: Currency }

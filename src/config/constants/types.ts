@@ -83,6 +83,7 @@ export interface SerializedFarmConfig extends FarmConfigBaseProps {
   poolAddress: string
   startTime: number
   rewardsDuration: number
+  rewardsAmount: string
 }
 
 export interface DeserializedFarmConfig extends FarmConfigBaseProps {

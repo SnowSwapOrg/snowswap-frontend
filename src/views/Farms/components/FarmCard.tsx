@@ -1,14 +1,15 @@
 // Copyright 2018-2021 evolution.land authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { Button, Text, Flex, ChevronDownIcon, useDelayedUnmount, useMatchBreakpoints, Box } from '@snowswap/uikit'
 import { SerializedFarmConfig } from 'config/constants/types'
 import { useFarmChefContract, useFarmStakerContract } from 'hooks/useContract'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { getFullDisplayBalance } from 'utils/formatBalance'
+import { formatBigNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
+import useTotalSupply from 'hooks/useTotalSupply'
 import { getAddress } from 'utils/addressHelpers'
 import { NumericalInput } from 'components/NumericalInput'
 import { parseUnits } from 'ethers/lib/utils'
@@ -20,6 +21,11 @@ import { getLpContract } from 'utils/contractHelpers'
 import { TokenImage } from 'components/TokenImage'
 import getTimePeriods from 'utils/getTimePeriods'
 import formatTimePeriod from 'utils/formatTimePeriod'
+import { useSingleTokenSwapInfoFromInput } from 'state/swap/hooks'
+import tokens from 'config/constants/tokens'
+import { usePair } from 'hooks/usePairs'
+import { useCurrency } from 'hooks/Tokens'
+import BigNumberJs from 'bignumber.js'
 import {
   useFarmStakerBalanceOf,
   useFarmStakerEarned,
@@ -130,7 +136,60 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
   const [stakeValue, setStakeValue] = useState<string>('')
   const [unstakeValue, setUnstakeValue] = useState<string>('')
 
-  const farmChef = useFarmChefContract()
+  const tokenPrice = useSingleTokenSwapInfoFromInput(farm.token.address, tokens.usdt.address)
+  const quoteTokenPrice = useSingleTokenSwapInfoFromInput(farm.quoteToken.address, tokens.usdt.address)
+  const rewardTokenPrice = useSingleTokenSwapInfoFromInput(farm.rewardToken.address, tokens.usdt.address)
+
+  const tokenCurrency = useCurrency(farm.token.address)
+  const quoteTokenCurrency = useCurrency(farm.quoteToken.address)
+  const [pairState, pair] = usePair(tokenCurrency ?? undefined, quoteTokenCurrency ?? undefined)
+  const pairTotalSupply = useTotalSupply(pair?.liquidityToken)
+  const tokenReserve = pair?.reserve0.token.address === farm.token.address ? pair?.reserve0 : pair?.reserve1
+  const quoteTokenReserve = pair?.reserve0.token.address === farm.token.address ? pair?.reserve1 : pair?.reserve0
+
+  const tokenValue = useMemo(() => {
+    if (tokenPrice && tokenPrice[farm.token.address.toLowerCase()] && tokenReserve) {
+      const price = new BigNumberJs(tokenPrice[farm.token.address.toLowerCase()])
+      const amount = new BigNumberJs(
+        formatBigNumber(
+          BigNumber.from(tokenReserve.raw.toString()),
+          tokenReserve.currency.decimals,
+          tokenReserve.currency.decimals,
+        ),
+      )
+      return price.times(amount)
+    }
+    return new BigNumberJs(0)
+  }, [farm.token.address, tokenPrice, tokenReserve])
+
+  const quoteTokenValue = useMemo(() => {
+    if (quoteTokenPrice && quoteTokenPrice[farm.quoteToken.address.toLowerCase()] && quoteTokenReserve) {
+      const price = new BigNumberJs(quoteTokenPrice[farm.quoteToken.address.toLowerCase()])
+      const amount = new BigNumberJs(
+        formatBigNumber(
+          BigNumber.from(quoteTokenReserve.raw.toString()),
+          quoteTokenReserve.currency.decimals,
+          quoteTokenReserve.currency.decimals,
+        ),
+      )
+      return price.times(amount)
+    }
+    return new BigNumberJs(0)
+  }, [farm.quoteToken.address, quoteTokenPrice, quoteTokenReserve])
+
+  const rewardTokenValue = useMemo(() => {
+    if (rewardTokenPrice && rewardTokenPrice[farm.rewardToken.address.toLowerCase()]) {
+      const price = new BigNumberJs(rewardTokenPrice[farm.rewardToken.address.toLowerCase()])
+      const amount = new BigNumberJs(
+        formatBigNumber(BigNumber.from(farm.rewardsAmount), farm.rewardToken.decimals, farm.rewardToken.decimals),
+      )
+      return price.times(amount)
+    }
+    return new BigNumberJs(0)
+  }, [farm.rewardToken.address, farm.rewardToken.decimals, farm.rewardsAmount, rewardTokenPrice])
+
+  const pairValueInPool = !tokenValue.eq(0) ? tokenValue.times(2) : quoteTokenValue.times(2)
+
   const stakerAddress = farm.poolAddress
 
   const farmStakerContract = useFarmStakerContract(stakerAddress, true)
@@ -166,6 +225,15 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
       console.log('success')
     },
   )
+
+  const farmsStakingValue = pairValueInPool.times(totalSupply.div(pairTotalSupply?.raw.toString() || 0))
+
+  // 31536000 = 3600 * 24 * 365
+  const apr = rewardTokenValue
+    .div(new BigNumberJs(farm.rewardsDuration))
+    .times(31536000)
+    .div(farmsStakingValue)
+    .times(100)
 
   const handleRenderRow = () => {
     if (isMobile) {
@@ -222,9 +290,13 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
         <td>
           <Text>{farm.lpSymbol}</Text>
         </td>
-        <td>
+        {/* <td>
           <Label>{t('Total')}</Label>
           <Text>{getFullDisplayBalance(totalSupply, 18, 12)}</Text>
+        </td> */}
+        <td>
+          <Label>{t('APR')}</Label>
+          <Text>{apr.toFixed(2)}%</Text>
         </td>
         <td>
           <Label>{t('My Share')}</Label>
@@ -360,7 +432,9 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
                 <Label>{t('Earliest Start Time')}:</Label>
                 <Text>{new Date(farm.startTime).toLocaleDateString(undefined)}</Text>
                 <Label>{t('Rewards Duration')}:</Label>
-                <Text> {formatTimePeriod(getTimePeriods(farm.rewardsDuration))}</Text>
+                <Text>{formatTimePeriod(getTimePeriods(farm.rewardsDuration))}</Text>
+                <Label>{t('APR')}:</Label>
+                <Text>{apr.toFixed(2)}%</Text>
               </Box>
             </Container>
           </BackgroundTD>

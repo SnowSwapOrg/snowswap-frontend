@@ -20,6 +20,7 @@ const farms: SerializedFarmConfig[] = [
     poolAddress: '0x85A1b1c1f8Fc999E8497b62b130aAe8f3B15Cf86',
     startTime: 1650438000000,
     rewardsDuration: 15552000,
+    rewardsAmount: '1000000000000000',
   },
   {
     pid: 2,
@@ -34,6 +35,7 @@ const farms: SerializedFarmConfig[] = [
     poolAddress: '0x426C4cd3C890AD717351550b7Ec221b36cbA0D72',
     startTime: 1650438000000,
     rewardsDuration: 15552000,
+    rewardsAmount: '7000000000000000000000000',
   },
 ]
 
