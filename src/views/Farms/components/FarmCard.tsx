@@ -136,9 +136,22 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
   const [stakeValue, setStakeValue] = useState<string>('')
   const [unstakeValue, setUnstakeValue] = useState<string>('')
 
-  const tokenPrice = useSingleTokenSwapInfoFromInput(farm.token.address, tokens.usdt.address)
-  const quoteTokenPrice = useSingleTokenSwapInfoFromInput(farm.quoteToken.address, tokens.usdt.address)
-  const rewardTokenPrice = useSingleTokenSwapInfoFromInput(farm.rewardToken.address, tokens.usdt.address)
+  const tokenPrice = useSingleTokenSwapInfoFromInput(
+    farm.token.address,
+    farm.token.address.toLowerCase() === tokens.usdt.address.toLowerCase() ? tokens.usdc.address : tokens.usdt.address,
+  )
+  const quoteTokenPrice = useSingleTokenSwapInfoFromInput(
+    farm.quoteToken.address,
+    farm.quoteToken.address.toLowerCase() === tokens.usdt.address.toLowerCase()
+      ? tokens.usdc.address
+      : tokens.usdt.address,
+  )
+  const rewardTokenPrice = useSingleTokenSwapInfoFromInput(
+    farm.rewardToken.address,
+    farm.rewardToken.address.toLowerCase() === tokens.usdt.address.toLowerCase()
+      ? tokens.usdc.address
+      : tokens.usdt.address,
+  )
 
   const tokenCurrency = useCurrency(farm.token.address)
   const quoteTokenCurrency = useCurrency(farm.quoteToken.address)
@@ -189,6 +202,7 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
   }, [farm.rewardToken.address, farm.rewardToken.decimals, farm.rewardsAmount, rewardTokenPrice])
 
   const pairValueInPool = !tokenValue.eq(0) ? tokenValue.times(2) : quoteTokenValue.times(2)
+  // console.log("🚀 ~ file: FarmCard.tsx ~ line 192 ~ pairValueInPool", tokenValue.toString(),quoteTokenValue.toString(), pairValueInPool.toString())
 
   const stakerAddress = farm.poolAddress
 

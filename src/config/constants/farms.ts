@@ -9,7 +9,7 @@ const farms: SerializedFarmConfig[] = [
    */
   {
     pid: 1,
-    lpSymbol: 'USDT-xRING LP',
+    lpSymbol: 'USDT-xRING (Classic) LP',
     lpAddresses: {
       44: '0x29BF15B31029c889E397Cc153C1F225e200581BC',
       256: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',

@@ -36,7 +36,7 @@
     },
     {
       "name": "Darwinia Network Native Token (From Darwinia Network)",
-      "symbol": "xRING",
+      "symbol": "xRING (Classic)",
       "address": "0x7399Ea6C9d35124d893B8d9808930e9d3F211501",
       "chainId": 44,
       "decimals": 9,
@@ -65,6 +65,14 @@
       "chainId": 44,
       "decimals": 6,
       "logoURI": "/images/tokens/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
+    },
+    {
+      "name": "Darwinia Network Native Token (From Darwinia Network)",
+      "symbol": "xWRING",
+      "address": "0x273131F7CB50ac002BDd08cA721988731F7e1092",
+      "chainId": 44,
+      "decimals": 18,
+      "logoURI": "/images/tokens/0x7399Ea6C9d35124d893B8d9808930e9d3F211501.svg"
     }
   ]
 }
