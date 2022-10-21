@@ -2,7 +2,7 @@
   "name": "Snow Swap Default List",
   "timestamp": "2021-05-06T00:00:00Z",
   "version": {
-    "major": 3,
+    "major": 4,
     "minor": 0,
     "patch": 0
   },
@@ -43,8 +43,8 @@
       "logoURI": "/images/tokens/0x7399Ea6C9d35124d893B8d9808930e9d3F211501.svg"
     },
     {
-      "name": "Wrapped CKTON",
-      "symbol": "WCKTON",
+      "name": "Wrapped CKTON (Classic)",
+      "symbol": "WCKTON (Classic)",
       "address": "0x159933C635570D5042723359fbD1619dFe83D3f3",
       "chainId": 44,
       "decimals": 18,
@@ -73,6 +73,14 @@
       "chainId": 44,
       "decimals": 18,
       "logoURI": "/images/tokens/0x7399Ea6C9d35124d893B8d9808930e9d3F211501.svg"
+    },
+    {
+      "name": "Darwinia Network Native Token (From Darwinia Network)",
+      "symbol": "CKTON",
+      "address": "0x0000000000000000000000000000000000000402",
+      "chainId": 44,
+      "decimals": 18,
+      "logoURI": "/images/tokens/0x0000000000000000000000000000000000000402.svg"
     }
   ]
 }
