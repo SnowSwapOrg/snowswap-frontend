@@ -12,7 +12,7 @@ const farms: SerializedFarmConfig[] = [
     lpSymbol: 'USDT-xRING (Classic) LP',
     lpAddresses: {
       44: '0x29BF15B31029c889E397Cc153C1F225e200581BC',
-      256: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
+      256: '',
     },
     token: serializedTokens.usdt,
     quoteToken: serializedTokens.ring,
@@ -27,7 +27,7 @@ const farms: SerializedFarmConfig[] = [
     lpSymbol: 'USDC-CRAB LP',
     lpAddresses: {
       44: '0x75D4D59991D388Dd0e1c5224AF605a3E79e1f17e',
-      256: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
+      256: '',
     },
     token: serializedTokens.usdc,
     quoteToken: serializedTokens.wbnb,

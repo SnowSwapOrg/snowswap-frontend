@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Page from 'components/Layout/Page'
 import { useTranslation } from 'contexts/Localization'
 import { farmsConfig } from 'config/constants'
+import { getAddress } from 'utils/addressHelpers'
 import { FarmCard } from './components'
 
 const StyledNotFound = styled.div`
@@ -42,11 +43,9 @@ const Farms = () => {
         <StyledTable>
           <TableBody>
             {farmsConfig.map((farm) => {
-              return (
-                <>
-                  <FarmCard farm={farm} />
-                </>
-              )
+              const lpAddress = getAddress(farm.lpAddresses)
+              if (!lpAddress) return null
+              return <FarmCard key={farm.pid} farm={farm} />
             })}
           </TableBody>
         </StyledTable>

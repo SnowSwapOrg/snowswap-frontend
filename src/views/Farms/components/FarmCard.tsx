@@ -5,7 +5,7 @@ import React, { useMemo, useState } from 'react'
 import styled, { keyframes, css } from 'styled-components'
 import { Button, Text, Flex, ChevronDownIcon, useDelayedUnmount, useMatchBreakpoints, Box } from '@snowswap/uikit'
 import { SerializedFarmConfig } from 'config/constants/types'
-import { useFarmChefContract, useFarmStakerContract } from 'hooks/useContract'
+import { useFarmStakerContract } from 'hooks/useContract'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { formatBigNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import useTokenBalance from 'hooks/useTokenBalance'
@@ -130,6 +130,7 @@ const StyledBalanceWithLink = styled.span`
 const FarmCard: React.FC<Props> = ({ farm }) => {
   const { t } = useTranslation()
   const { isDesktop, isMobile } = useMatchBreakpoints()
+  const isExpired = (farm.startTime + farm.rewardsDuration) / 1000 < Date.now()
 
   const { account, chainId, library } = useActiveWeb3React()
 
@@ -243,11 +244,9 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
   const farmsStakingValue = pairValueInPool.times(totalSupply.div(pairTotalSupply?.raw.toString() || 0))
 
   // 31536000 = 3600 * 24 * 365
-  const apr = rewardTokenValue
-    .div(new BigNumberJs(farm.rewardsDuration))
-    .times(31536000)
-    .div(farmsStakingValue)
-    .times(100)
+  const apr = isExpired
+    ? 0
+    : rewardTokenValue.div(new BigNumberJs(farm.rewardsDuration)).times(31536000).div(farmsStakingValue).times(100)
 
   const handleRenderRow = () => {
     if (isMobile) {
@@ -310,7 +309,9 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
         </td> */}
         <td>
           <Label>{t('APR')}</Label>
-          <Text>{apr.toFixed(2)}%</Text>
+          <Text>
+            {apr.toFixed(2)}%{isExpired ? ' - Expired' : ''}
+          </Text>
         </td>
         <td>
           <Label>{t('My Share')}</Label>
@@ -380,7 +381,10 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
                         scale="sm"
                         disabled={
                           parseUnits(stakeValue.toString() || '0', 18).eq(BigNumber.from(0)) ||
-                          parseUnits(stakeValue.toString() || '0', 18).gt(BigNumber.from(lpBalance.balance.toString()))
+                          parseUnits(stakeValue.toString() || '0', 18).gt(
+                            BigNumber.from(lpBalance.balance.toString()),
+                          ) ||
+                          isExpired
                         }
                         onClick={() => {
                           onStake(parseUnits(stakeValue.toString() || '0', 18).toString())
@@ -448,7 +452,9 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
                 <Label>{t('Rewards Duration')}:</Label>
                 <Text>{formatTimePeriod(getTimePeriods(farm.rewardsDuration))}</Text>
                 <Label>{t('APR')}:</Label>
-                <Text>{apr.toFixed(2)}%</Text>
+                <Text>
+                  {apr.toFixed(2)}%{isExpired ? ' - Expired' : ''}
+                </Text>
               </Box>
             </Container>
           </BackgroundTD>
