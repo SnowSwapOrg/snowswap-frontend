@@ -91,7 +91,7 @@ export const darwiniaTokens = {
     '0x0000000000000000000000000000000000000402',
     18,
     'KTON',
-    'Darwinia Network Native Token',
+    'Darwinia Commitment Token',
     'https://darwinia.network/',
   ),
 }

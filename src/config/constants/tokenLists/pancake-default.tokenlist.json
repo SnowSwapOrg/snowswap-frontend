@@ -75,7 +75,7 @@
       "logoURI": "/images/tokens/0x7399Ea6C9d35124d893B8d9808930e9d3F211501.svg"
     },
     {
-      "name": "Darwinia Network Native Token (From Darwinia Network)",
+      "name": "Darwinia Commitment Token (From Darwinia Network)",
       "symbol": "CKTON",
       "address": "0x0000000000000000000000000000000000000402",
       "chainId": 44,
@@ -91,7 +91,7 @@
       "logoURI": "/images/tokens/0xF436Ae756f46F2ac547A870c71898eA5915F2F9E.svg"
     },
     {
-      "name": "Darwinia Network Native Token",
+      "name": "Darwinia Commitment Token",
       "symbol": "KTON",
       "address": "0x0000000000000000000000000000000000000402",
       "chainId": 46,
