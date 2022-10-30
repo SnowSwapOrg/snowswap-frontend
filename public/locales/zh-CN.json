@@ -1248,7 +1248,7 @@
   "Your Wallet": "您的钱包",
   "Transactions": "交易",
   "CRAB Balance Low": "CRAB 余额低",
-  "CRAB Balance": "CRAB 余额",
+  "CRAB Balance": "%token% 余额",
   "CAKE Balance": "CAKE 余额",
   "You need BNB for transaction fees.": "您需要 BNB 来支付交易费用。",
   "Disconnect": "断开",
