@@ -1,9 +1,10 @@
 import React from 'react'
-import { ChainId, Currency, currencyEquals, ETHER, Token } from '@snowswap/sdk'
+import { ChainId, Currency, currencyEquals, Token } from '@snowswap/sdk'
 import { Text } from '@snowswap/uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 
+import { ETHER, NATIVE_TOKEN_SYMBOL } from 'config'
 import { SUGGESTED_BASES } from '../../config/constants'
 import { AutoColumn } from '../Layout/Column'
 import QuestionHelper from '../QuestionHelper'
@@ -52,7 +53,7 @@ export default function CommonBases({
           disable={selectedCurrency === ETHER}
         >
           <CurrencyLogo currency={ETHER} style={{ marginRight: 8 }} />
-          <Text>CRAB</Text>
+          <Text>{NATIVE_TOKEN_SYMBOL}</Text>
         </BaseWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address

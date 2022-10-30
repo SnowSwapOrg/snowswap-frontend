@@ -11,8 +11,8 @@
   "keywords": ["snowswap", "default"],
   "tokens": [
     {
-      "name": "WCRAB Token",
-      "symbol": "WCRAB",
+      "name": "WHT Token",
+      "symbol": "WHT",
       "address": "0xF436Ae756f46F2ac547A870c71898eA5915F2F9E",
       "chainId": 256,
       "decimals": 18,
@@ -20,7 +20,7 @@
     },
     {
       "name": "Darwinia Network Native Token",
-      "symbol": "xRING",
+      "symbol": "txRING",
       "address": "0xc8F2eC4c01AD7cDF27431983546da0c35E40237c",
       "chainId": 256,
       "decimals": 18,
@@ -29,10 +29,10 @@
     {
       "name": "WCRAB Token",
       "symbol": "WCRAB",
-      "address": "0x2d2b97ea380b0185e9fdf8271d1afb5d2bf18329",
+      "address": "0x2D2b97EA380b0185e9fDF8271d1AFB5d2Bf18329",
       "chainId": 44,
       "decimals": 18,
-      "logoURI": "/images/tokens/0x2d2b97ea380b0185e9fdf8271d1afb5d2bf18329.svg"
+      "logoURI": "/images/tokens/0x2D2b97EA380b0185e9fDF8271d1AFB5d2Bf18329.svg"
     },
     {
       "name": "Darwinia Network Native Token (From Darwinia Network)",
@@ -79,6 +79,22 @@
       "symbol": "CKTON",
       "address": "0x0000000000000000000000000000000000000402",
       "chainId": 44,
+      "decimals": 18,
+      "logoURI": "/images/tokens/0x0000000000000000000000000000000000000402.svg"
+    },
+    {
+      "name": "Wrapped RING",
+      "symbol": "WRING",
+      "address": "0xE7578598Aac020abFB918f33A20faD5B71d670b4",
+      "chainId": 46,
+      "decimals": 18,
+      "logoURI": "/images/tokens/0xF436Ae756f46F2ac547A870c71898eA5915F2F9E.svg"
+    },
+    {
+      "name": "Darwinia Network Native Token",
+      "symbol": "KTON",
+      "address": "0x0000000000000000000000000000000000000402",
+      "chainId": 46,
       "decimals": 18,
       "logoURI": "/images/tokens/0x0000000000000000000000000000000000000402.svg"
     }

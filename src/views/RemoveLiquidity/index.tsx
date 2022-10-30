@@ -8,6 +8,7 @@ import { Button, Text, AddIcon, ArrowDownIcon, CardBody, Slider, Box, Flex, useM
 import { RouteComponentProps } from 'react-router'
 import { BigNumber } from '@ethersproject/bignumber'
 import { useTranslation } from 'contexts/Localization'
+import { NATIVE_TOKEN_SYMBOL } from 'config'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -544,15 +545,17 @@ export default function RemoveLiquidity({
                             currencyB === ETHER ? WETH[chainId].address : currencyIdB
                           }`}
                         >
-                          {t('Receive WCRAB')}
+                          {t('Receive WCRAB', { token: NATIVE_TOKEN_SYMBOL })}
                         </StyledInternalLink>
                       ) : oneCurrencyIsWETH ? (
                         <StyledInternalLink
                           to={`/remove/${
-                            currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'CRAB' : currencyIdA
-                          }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'CRAB' : currencyIdB}`}
+                            currencyA && currencyEquals(currencyA, WETH[chainId]) ? NATIVE_TOKEN_SYMBOL : currencyIdA
+                          }/${
+                            currencyB && currencyEquals(currencyB, WETH[chainId]) ? NATIVE_TOKEN_SYMBOL : currencyIdB
+                          }`}
                         >
-                          {t('Receive CRAB')}
+                          {t('Receive CRAB', { token: NATIVE_TOKEN_SYMBOL })}
                         </StyledInternalLink>
                       ) : null}
                     </RowBetween>

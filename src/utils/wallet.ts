@@ -1,6 +1,6 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_BSC_SCAN_URL, BASE_URL } from 'config'
+import { BASE_BSC_SCAN_URL, BASE_URL, CHAIN_NAME, NATIVE_TOKEN_NAME, NATIVE_TOKEN_SYMBOL } from 'config'
 import { nodes } from './getRpcUrl'
 
 /**
@@ -17,10 +17,10 @@ export const setupNetwork = async () => {
         params: [
           {
             chainId: `0x${chainId.toString(16)}`,
-            chainName: 'Crab Network Mainnet',
+            chainName: CHAIN_NAME,
             nativeCurrency: {
-              name: 'CRAB',
-              symbol: 'crab',
+              name: NATIVE_TOKEN_NAME,
+              symbol: NATIVE_TOKEN_SYMBOL,
               decimals: 18,
             },
             rpcUrls: nodes,
@@ -34,7 +34,7 @@ export const setupNetwork = async () => {
       return false
     }
   } else {
-    console.error("Can't setup the CRAB network on metamask because window.ethereum is undefined")
+    console.error(`Can't setup the ${CHAIN_NAME} network on metamask because window.ethereum is undefined`)
     return false
   }
 }

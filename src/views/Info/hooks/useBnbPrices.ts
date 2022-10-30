@@ -3,6 +3,7 @@ import { getDeltaTimestamps } from 'views/Info/utils/infoQueryHelpers'
 import { useState, useEffect } from 'react'
 import { request, gql } from 'graphql-request'
 import { INFO_CLIENT } from 'config/constants/endpoints'
+import { NATIVE_TOKEN_SYMBOL } from 'config'
 
 export interface BnbPrices {
   current: number
@@ -64,7 +65,7 @@ const fetchBnbPrices = async (
       },
     }
   } catch (error) {
-    console.error('Failed to fetch CRAB prices', error)
+    console.error(`Failed to fetch ${NATIVE_TOKEN_SYMBOL} prices`, error)
     return {
       error: true,
       bnbPrices: undefined,

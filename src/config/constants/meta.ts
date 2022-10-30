@@ -1,9 +1,10 @@
+import { CHAIN_NAME } from 'config'
 import { ContextApi } from 'contexts/Localization/types'
 import { PageMeta } from './types'
 
 export const DEFAULT_META: PageMeta = {
   title: 'Snowswap',
-  description: 'The most popular AMM on CRAB by user count! ',
+  description: `The most popular AMM on ${CHAIN_NAME} by user count! `,
   image: 'https://snowswap.xyz/images/hero.png',
 }
 

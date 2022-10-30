@@ -1,4 +1,5 @@
 import { createAction } from '@reduxjs/toolkit'
+import { ChainId } from '@snowswap/sdk'
 import { SerializedToken } from 'config/constants/types'
 
 export interface SerializedPair {
@@ -56,6 +57,8 @@ export const updateUserUsernameVisibility = createAction<{ userUsernameVisibilit
   'user/updateUserUsernameVisibility',
 )
 export const updateGasPrice = createAction<{ gasPrice: string }>('user/updateGasPrice')
+
+export const switchUserChainId = createAction<{ userChainId: ChainId }>('user/switchChainId')
 
 export const addWatchlistToken = createAction<{ address: string }>('user/addWatchlistToken')
 export const addWatchlistPool = createAction<{ address: string }>('user/addWatchlistPool')

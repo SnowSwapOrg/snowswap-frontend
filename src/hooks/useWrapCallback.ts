@@ -1,6 +1,7 @@
-import { Currency, currencyEquals, ETHER, WETH } from '@snowswap/sdk'
+import { Currency, currencyEquals, WETH } from '@snowswap/sdk'
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { ETHER, NATIVE_TOKEN_SYMBOL } from 'config'
 import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { useCurrencyBalance } from '../state/wallet/hooks'
@@ -48,13 +49,15 @@ export default function useWrapCallback(
                   const txReceipt = await callWithGasPrice(wethContract, 'deposit', undefined, {
                     value: `0x${inputAmount.raw.toString(16)}`,
                   })
-                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} CRAB to WCRAB` })
+                  addTransaction(txReceipt, {
+                    summary: `Wrap ${inputAmount.toSignificant(6)} ${NATIVE_TOKEN_SYMBOL} to W${NATIVE_TOKEN_SYMBOL}`,
+                  })
                 } catch (error) {
                   console.error('Could not deposit', error)
                 }
               }
             : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient CRAB Balance',
+        inputError: sufficientBalance ? undefined : `Insufficient ${NATIVE_TOKEN_SYMBOL} Balance`,
       }
     }
     if (currencyEquals(WETH[chainId], inputCurrency) && outputCurrency === ETHER) {
@@ -67,13 +70,15 @@ export default function useWrapCallback(
                   const txReceipt = await callWithGasPrice(wethContract, 'withdraw', [
                     `0x${inputAmount.raw.toString(16)}`,
                   ])
-                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} WCRAB to CRAB` })
+                  addTransaction(txReceipt, {
+                    summary: `Unwrap ${inputAmount.toSignificant(6)} W${NATIVE_TOKEN_SYMBOL} to ${NATIVE_TOKEN_SYMBOL}`,
+                  })
                 } catch (error) {
                   console.error('Could not withdraw', error)
                 }
               }
             : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient WCRAB Balance',
+        inputError: sufficientBalance ? undefined : `Insufficient W${NATIVE_TOKEN_SYMBOL} Balance`,
       }
     }
     return NOT_APPLICABLE

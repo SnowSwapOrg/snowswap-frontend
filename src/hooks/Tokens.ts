@@ -1,9 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, ETHER, Token, currencyEquals } from '@snowswap/sdk'
+import { Currency, Token, currencyEquals } from '@snowswap/sdk'
 import { useMemo } from 'react'
 import { arrayify } from 'ethers/lib/utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { ETHER, NATIVE_TOKEN_SYMBOL } from 'config'
 import {
   TokenAddressMap,
   useDefaultTokenList,
@@ -189,7 +190,7 @@ export function useToken(tokenAddress?: string): Token | undefined | null {
 }
 
 export function useCurrency(currencyId: string | undefined): Currency | null | undefined {
-  const isBNB = currencyId?.toUpperCase() === 'CRAB'
+  const isBNB = currencyId?.toUpperCase() === NATIVE_TOKEN_SYMBOL
   const token = useToken(isBNB ? undefined : currencyId)
   return isBNB ? ETHER : token
 }

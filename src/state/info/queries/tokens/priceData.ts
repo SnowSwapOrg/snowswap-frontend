@@ -67,17 +67,17 @@ const fetchTokenPriceData = async (
       }
     }
 
-    // format token CRAB price results
+    // format token NATIVE price results
     const tokenPrices: {
       timestamp: string
       derivedBNB: number
       priceUSD: number
     }[] = []
 
-    // Get Token prices in CRAB
+    // Get Token prices in NATIVE
     Object.keys(prices).forEach((priceKey) => {
       const timestamp = priceKey.split('t')[1]
-      // if its CRAB price e.g. `b123` split('t')[1] will be undefined and skip CRAB price entry
+      // if its NATIVE price e.g. `b123` split('t')[1] will be undefined and skip NATIVE price entry
       if (timestamp) {
         tokenPrices.push({
           timestamp,

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Skeleton, Text } from '@snowswap/uikit'
 import { useWeb3React } from '@web3-react/core'
-import useTokenBalance, { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
+import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 import { getBscScanLink } from 'utils'
-import { getFullDisplayBalance, formatBigNumber } from 'utils/formatBalance'
-import tokens from 'config/constants/tokens'
+import { formatBigNumber } from 'utils/formatBalance'
+import { NATIVE_TOKEN_SYMBOL } from 'config'
 import CopyAddress from './CopyAddress'
 
 interface WalletInfoProps {
@@ -41,7 +41,7 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
         </Message>
       )}
       <Flex alignItems="center" justifyContent="space-between">
-        <Text color="textSubtle">{t('CRAB Balance')}</Text>
+        <Text color="textSubtle">{t('CRAB Balance', { token: NATIVE_TOKEN_SYMBOL })}</Text>
         {fetchStatus !== FetchStatus.SUCCESS ? (
           <Skeleton height="22px" width="60px" />
         ) : (

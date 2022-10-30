@@ -1,4 +1,5 @@
-import { CurrencyAmount, ETHER, JSBI } from '@snowswap/sdk'
+import { CurrencyAmount, JSBI } from '@snowswap/sdk'
+import { ETHER } from 'config'
 import { MIN_BNB } from '../config/constants'
 
 /**

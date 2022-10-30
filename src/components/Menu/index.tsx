@@ -5,18 +5,18 @@ import { languageList } from 'config/localization/languages'
 import { useTranslation } from 'contexts/Localization'
 import PhishingWarningBanner from 'components/PhishingWarningBanner'
 import useTheme from 'hooks/useTheme'
-// import { usePriceCakeBusd } from 'state/farms/hooks'
+import useSwitchUserChainId from 'hooks/useSwitchUserChainId'
 import { usePhishingBannerManager } from 'state/user/hooks'
+import { ChainId } from '@snowswap/sdk'
 import config from './config/config'
 import UserMenu from './UserMenu'
 import GlobalSettings from './GlobalSettings'
 import { getActiveMenuItem, getActiveSubMenuItem } from './utils'
-import { footerLinks } from './config/footerConfig'
 
 const Menu = (props) => {
   const { isDark, toggleTheme } = useTheme()
-  // const cakePriceUsd = usePriceCakeBusd()
   const { currentLanguage, setLanguage, t } = useTranslation()
+  const { setUserChainId } = useSwitchUserChainId()
   const { pathname } = useLocation()
   const [showPhishingWarningBanner] = usePhishingBannerManager()
 
@@ -36,10 +36,22 @@ const Menu = (props) => {
       cakePriceUsd={0}
       links={config(t)}
       subLinks={activeMenuItem?.hideSubNav ? [] : activeMenuItem?.items}
-      // footerLinks={footerLinks(t)}
       activeItem={activeMenuItem?.href}
       activeSubItem={activeSubMenuItem?.href}
       buyCakeLabel={t('Buy CAKE')}
+      userChainIds={[
+        {
+          text: 'Darwinia Smart Chain',
+          link: 'https://darwinia.snowswap.xyz',
+          chainId: ChainId.DARWINIA,
+        },
+        {
+          text: 'Crab Smart Chain',
+          link: 'https://snowswap.xyz',
+          chainId: ChainId.MAINNET,
+        },
+      ]}
+      setUserChainId={setUserChainId}
       {...props}
     />
   )

@@ -1,9 +1,10 @@
-import { Currency, ETHER, Token } from '@snowswap/sdk'
+import { Currency, Token } from '@snowswap/sdk'
+import { ETHER } from 'config'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
-import getTokenLogoURL, { getCrabTokenLogoURL } from '../../utils/getTokenLogoURL'
+import getTokenLogoURL, { getNativeTokenLogoURL } from '../../utils/getTokenLogoURL'
 import Logo from './Logo'
 
 const StyledLogo = styled(Logo)<{ size: string }>`
@@ -38,7 +39,7 @@ export default function CurrencyLogo({
     return (
       <StyledLogo
         size={size}
-        srcs={[getCrabTokenLogoURL()]}
+        srcs={[getNativeTokenLogoURL()]}
         alt={`${currency?.symbol ?? 'token'} logo`}
         style={style}
       />

@@ -1,7 +1,18 @@
 import { ChainId, JSBI, Percent, Token } from '@snowswap/sdk'
-import { mainnetTokens, testnetTokens } from './tokens'
+import { darwiniaTokens, mainnetTokens, testnetTokens } from './tokens'
 
-export const ROUTER_ADDRESS = '0xAF5cAa87a7d3718622604268C43fF6cE9d2cEc3C'
+// a list of tokens by chain
+type RouterList = {
+  readonly [chainId in ChainId]: string
+}
+
+const ROUTER_MAP: RouterList = {
+  [ChainId.MAINNET]: '0xAF5cAa87a7d3718622604268C43fF6cE9d2cEc3C',
+  [ChainId.TESTNET]: '0xAF5cAa87a7d3718622604268C43fF6cE9d2cEc3C',
+  [ChainId.DARWINIA]: '0xB899409cDA0fFA2bF87F9c7b31f3c77D6A3a0bB0',
+}
+
+export const ROUTER_ADDRESS = ROUTER_MAP[process.env.REACT_APP_CHAIN_ID]
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -18,6 +29,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     mainnetTokens.usdc,
   ],
   [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.ring],
+  [ChainId.DARWINIA]: [darwiniaTokens.wbnb, darwiniaTokens.kton],
 }
 
 /**
@@ -41,17 +53,20 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.MAINNET]: [mainnetTokens.wbnb, mainnetTokens.xwring, mainnetTokens.usdt, mainnetTokens.usdc],
   [ChainId.TESTNET]: [testnetTokens.ring, testnetTokens.wbnb],
+  [ChainId.DARWINIA]: [darwiniaTokens.kton, darwiniaTokens.wbnb],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [mainnetTokens.xwring, mainnetTokens.wbnb, mainnetTokens.usdt, mainnetTokens.usdc],
   [ChainId.TESTNET]: [testnetTokens.ring, testnetTokens.wbnb],
+  [ChainId.DARWINIA]: [darwiniaTokens.kton, darwiniaTokens.wbnb],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [[mainnetTokens.xwring, mainnetTokens.wbnb]],
-  [ChainId.TESTNET]: [[mainnetTokens.xwring, testnetTokens.wbnb]],
+  [ChainId.TESTNET]: [[testnetTokens.ring, testnetTokens.wbnb]],
+  [ChainId.DARWINIA]: [[darwiniaTokens.kton, darwiniaTokens.wbnb]],
 }
 
 export const NetworkContextName = 'NETWORK'

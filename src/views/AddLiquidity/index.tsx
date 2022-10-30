@@ -9,6 +9,7 @@ import { useTranslation } from 'contexts/Localization'
 import UnsupportedCurrencyFooter from 'components/UnsupportedCurrencyFooter'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useDispatch } from 'react-redux'
+import { NATIVE_TOKEN_SYMBOL } from 'config'
 import { AppDispatch } from '../../state'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Layout/Column'
@@ -284,7 +285,7 @@ export default function AddLiquidity({
           history.push(`/add/${newCurrencyIdB}`)
         }
       } else {
-        history.push(`/add/${currencyIdA || 'CRAB'}/${newCurrencyIdB}`)
+        history.push(`/add/${currencyIdA || NATIVE_TOKEN_SYMBOL}/${newCurrencyIdB}`)
       }
     },
     [currencyIdA, history, currencyIdB],

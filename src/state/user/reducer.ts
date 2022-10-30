@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
+import { ChainId } from '@snowswap/sdk'
 import { SerializedToken } from 'config/constants/types'
 import { DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from '../../config/constants'
 import { updateVersion } from '../global/actions'
@@ -32,6 +33,7 @@ import {
   setIsExchangeChartDisplayed,
   setChartViewMode,
   ChartViewMode,
+  switchUserChainId,
 } from './actions'
 import { GAS_PRICE_GWEI } from './hooks/helpers'
 
@@ -68,6 +70,7 @@ export interface UserState {
   timestamp: number
   audioPlay: boolean
   isDark: boolean
+  userChainId: ChainId
   isExchangeChartDisplayed: boolean
   userChartViewMode: ChartViewMode
   userFarmStakedOnly: FarmStakedOnly
@@ -98,6 +101,7 @@ export const initialState: UserState = {
   timestamp: currentTimestamp(),
   audioPlay: true,
   isDark: false,
+  userChainId: ChainId.MAINNET,
   isExchangeChartDisplayed: true,
   userChartViewMode: ChartViewMode.BASIC,
   userFarmStakedOnly: FarmStakedOnly.ON_FINISHED,
@@ -189,6 +193,9 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(toggleTheme, (state) => {
       state.isDark = !state.isDark
+    })
+    .addCase(switchUserChainId, (state, { payload: { userChainId } }) => {
+      state.userChainId = userChainId
     })
     .addCase(updateUserFarmStakedOnly, (state, { payload: { userFarmStakedOnly } }) => {
       state.userFarmStakedOnly = userFarmStakedOnly

@@ -35,6 +35,7 @@ import {
   setIsExchangeChartDisplayed,
   ChartViewMode,
   setChartViewMode,
+  switchUserChainId,
 } from '../actions'
 import { deserializeToken, GAS_PRICE_GWEI, serializeToken } from './helpers'
 
@@ -124,6 +125,20 @@ export function useThemeManager(): [boolean, () => void] {
   }, [dispatch])
 
   return [isDark, toggleTheme]
+}
+
+export function useUserChainIdManager(): [ChainId, (chainId: ChainId) => void] {
+  const dispatch = useDispatch<AppDispatch>()
+  const userChainId = useSelector<AppState, AppState['user']['userChainId']>((state) => state.user.userChainId)
+
+  const setUserChainId = useCallback(
+    (chainId: ChainId) => {
+      dispatch(switchUserChainId({ userChainId: chainId }))
+    },
+    [dispatch],
+  )
+
+  return [userChainId, setUserChainId]
 }
 
 export function useUserSingleHopOnly(): [boolean, (newSingleHopOnly: boolean) => void] {
@@ -334,9 +349,8 @@ export function useRemoveUserAddedToken(): (chainId: number, address: string) =>
 }
 
 export function useGasPrice(): string {
-  const chainId = process.env.REACT_APP_CHAIN_ID
   const userGas = useSelector<AppState, AppState['user']['gasPrice']>((state) => state.user.gasPrice)
-  return chainId === ChainId.MAINNET.toString() ? userGas : GAS_PRICE_GWEI.testnet
+  return userGas
 }
 
 export function useGasPriceManager(): [string, (userGasPrice: string) => void] {

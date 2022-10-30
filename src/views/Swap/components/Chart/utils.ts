@@ -1,3 +1,4 @@
+import { NATIVE_TOKEN_SYMBOL } from 'config'
 import { BNB_ADDRESS } from './constants'
 
 const MIN_VALUE_DISPLAYED = 0.001
@@ -25,8 +26,8 @@ export const getTokenAddress = (tokenAddress: undefined | string) => {
   if (!tokenAddress) {
     return ''
   }
-  const lowerCaseAddress = tokenAddress.toLowerCase()
-  if (lowerCaseAddress === 'crab') {
+  const lowerCaseAddress = tokenAddress.toUpperCase()
+  if (lowerCaseAddress === NATIVE_TOKEN_SYMBOL) {
     return BNB_ADDRESS
   }
 

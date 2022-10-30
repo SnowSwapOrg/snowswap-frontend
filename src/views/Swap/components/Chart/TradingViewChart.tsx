@@ -1,6 +1,7 @@
 import { Currency } from '@snowswap/sdk'
 import { Box, BunnyPlaceholderIcon, Flex, Text } from '@snowswap/uikit'
 import TradingView, { useTradingViewEvent } from 'components/TradingView'
+import { NATIVE_TOKEN_SYMBOL } from 'config'
 import { useTranslation } from 'contexts/Localization'
 import useDebounce from 'hooks/useDebounce'
 import React, { useCallback, useMemo, useState } from 'react'
@@ -37,7 +38,7 @@ const LoadingWrapper = styled.div<{ $isDark: boolean }>`
   }
 `
 
-const bnbToWBNBSymbol = (sym: string) => (sym === 'CRAB' ? 'WCRAB' : sym)
+const bnbToWBNBSymbol = (sym: string) => (sym === NATIVE_TOKEN_SYMBOL ? `W${NATIVE_TOKEN_SYMBOL}` : sym)
 
 const ID = 'TV_SWAP_CHART'
 

@@ -1,5 +1,5 @@
 import { parseUnits } from '@ethersproject/units'
-import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@snowswap/sdk'
+import { Currency, CurrencyAmount, JSBI, Token, TokenAmount, Trade } from '@snowswap/sdk'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,6 +13,7 @@ import { isAddress } from 'utils'
 import { computeSlippageAdjustedAmounts } from 'utils/prices'
 import getLpAddress from 'utils/getLpAddress'
 import { getTokenAddress } from 'views/Swap/components/Chart/utils'
+import { ETHER, NATIVE_TOKEN_SYMBOL } from 'config'
 import { AppDispatch, AppState } from '../index'
 import { useCurrencyBalances } from '../wallet/hooks'
 import {
@@ -56,7 +57,7 @@ export function useSwapActionHandlers(): {
       dispatch(
         selectCurrency({
           field,
-          currencyId: currency instanceof Token ? currency.address : currency === ETHER ? 'CRAB' : '',
+          currencyId: currency instanceof Token ? currency.address : currency === ETHER ? NATIVE_TOKEN_SYMBOL : '',
         }),
       )
     },
@@ -278,8 +279,8 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
   if (typeof urlParam === 'string') {
     const valid = isAddress(urlParam)
     if (valid) return valid
-    if (urlParam.toUpperCase() === 'CRAB') return 'CRAB'
-    if (valid === false) return 'CRAB'
+    if (urlParam.toUpperCase() === NATIVE_TOKEN_SYMBOL) return NATIVE_TOKEN_SYMBOL
+    if (valid === false) return NATIVE_TOKEN_SYMBOL
   }
   return ''
 }

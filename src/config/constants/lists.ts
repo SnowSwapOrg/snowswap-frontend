@@ -1,6 +1,6 @@
 // const PANCAKE_EXTENDED = ``
 // const PANCAKE_TOP100 = ``
-const EVOLUTIONLAND = `https://www.evolution.land/tokenlists/crab.evolutionland.tokenlist.json`
+const EVOLUTIONLAND = `https://v2.evolution.land/tokenlists/crab.evolutionland.tokenlist.json`
 
 export const UNSUPPORTED_LIST_URLS: string[] = []
 

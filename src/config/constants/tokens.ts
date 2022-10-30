@@ -2,7 +2,7 @@ import { ChainId, Token } from '@snowswap/sdk'
 import { serializeToken } from 'state/user/hooks/helpers'
 import { SerializedToken } from './types'
 
-const { MAINNET, TESTNET } = ChainId
+const { MAINNET, TESTNET, DARWINIA } = ChainId
 
 interface TokenList {
   [symbol: string]: Token
@@ -63,31 +63,58 @@ export const testnetTokens = {
     TESTNET,
     '0xF436Ae756f46F2ac547A870c71898eA5915F2F9E',
     18,
-    'WCRAB',
-    'Wrapped CRAB',
+    'WHT',
+    'Wrapped HT',
     'https://crab.network/',
   ),
   ring: new Token(
     TESTNET,
     '0xc8F2eC4c01AD7cDF27431983546da0c35E40237c',
     18,
-    'RING',
+    'tRING',
     'Darwinia Network Native Token',
     'https://darwinia.network/',
   ),
+}
+
+export const darwiniaTokens = {
+  wbnb: new Token(
+    DARWINIA,
+    '0xE7578598Aac020abFB918f33A20faD5B71d670b4',
+    18,
+    'WRING',
+    'Wrapped RING',
+    'https://darwinia.network/',
+  ),
+  kton: new Token(
+    DARWINIA,
+    '0x0000000000000000000000000000000000000402',
+    18,
+    'KTON',
+    'Darwinia Network Native Token',
+    'https://darwinia.network/',
+  ),
+}
+
+const tokenMap = {
+  [ChainId.MAINNET]: mainnetTokens,
+  [ChainId.TESTNET]: testnetTokens,
+  [ChainId.DARWINIA]: darwiniaTokens,
 }
 
 const tokens = (): TokenList => {
   const chainId = process.env.REACT_APP_CHAIN_ID
 
   // If testnet - return list comprised of testnetTokens wherever they exist, and mainnetTokens where they don't
-  if (parseInt(chainId, 10) === ChainId.TESTNET) {
-    return Object.keys(mainnetTokens).reduce((accum, key) => {
-      return { ...accum, [key]: testnetTokens[key] || mainnetTokens[key] }
-    }, {})
-  }
+  // if (parseInt(chainId, 10) === ChainId.TESTNET) {
+  //   return Object.keys(mainnetTokens).reduce((accum, key) => {
+  //     return { ...accum, [key]: testnetTokens[key] || mainnetTokens[key] }
+  //   }, {})
+  // }
 
-  return mainnetTokens
+  // return mainnetTokens
+
+  return tokenMap[chainId] || {}
 }
 
 export const serializeTokens = (): SerializedTokenList => {
