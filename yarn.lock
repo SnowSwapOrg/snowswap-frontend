@@ -2863,10 +2863,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@snowswap/sdk@^2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@snowswap/sdk/-/sdk-2.4.2.tgz#d9963c3acfa7990a09d21016e8bad17b8ff74cac"
-  integrity sha512-ZgaQF6qO6DRE7kifxuz5nQlgUWYhQ9/hbtRKNUSuM6pK3YwpCpYbOB+NNZYq2IutnvbPpcrBpHSLhoEat0d2ug==
+"@snowswap/sdk@^2.4.3":
+  version "2.4.3"
+  resolved "https://registry.npmjs.org/@snowswap/sdk/-/sdk-2.4.3.tgz#1479d8c37d06e8cff0e49bac1e159da760e04784"
+  integrity sha512-5MSSX8DStIOD68PcA+rCHC8W0zkn24WoqNxYT6OoOlpRQb+Ae0D72KAplwuxHGHgjq3aztwZL4jIuRei4rUxYg==
   dependencies:
     "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
     big.js "^5.2.2"
@@ -2876,10 +2876,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@snowswap/uikit@^0.60.2":
-  version "0.60.2"
-  resolved "https://registry.yarnpkg.com/@snowswap/uikit/-/uikit-0.60.2.tgz#12c373025faecb35caf57f74571710987b0c50c6"
-  integrity sha512-gNpcCgtkp7B0yePzzwJFP0f6aFGuKpeKJZKdrF0VfOd1UZ6S/qQHKfsFfhzG7prdYEvnK9PkiOmBF7ZHicQOxA==
+"@snowswap/uikit@^0.60.3":
+  version "0.60.3"
+  resolved "https://registry.npmjs.org/@snowswap/uikit/-/uikit-0.60.3.tgz#a4dfb3c33faeb4c523f66a679bc30118e0545448"
+  integrity sha512-uW0TuJoZZ1rzsVIduEYr2f2T0P+KdzGbGDjXUrtLyABNIVLPrTvxgAXtFZMM/NdClaHEnBtGOJwlLueMlsYpvg==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/lodash" "^4.14.168"
