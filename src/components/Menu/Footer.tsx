@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ButtonMenu, ButtonMenuItem, LinkExternal, Flex, Svg, Image, Button, Box } from '@snowswap/uikit'
+import { LinkExternal, Flex, Box } from '@snowswap/uikit'
 import { useTranslation } from 'contexts/Localization'
+import { CHAIN_ID } from 'config'
+import { ChainId } from '@snowswap/sdk'
 
 const Wrapper = styled.div<{ $isSide: boolean }>`
   width: 100%;
@@ -40,28 +42,32 @@ type FooterVariant = 'default' | 'side'
 const Footer: React.FC<{ variant?: FooterVariant }> = ({ variant = 'default' }) => {
   const { t } = useTranslation()
   const isSide = variant === 'side'
+
   return (
     <Wrapper $isSide={isSide}>
-      <Flex flexDirection={isSide ? 'column' : ['column', 'column', 'row']} alignItems="center">
-        <LinkExternal
-          id="darwiniaBridge"
-          href="https://helixbridge.app/apps"
-          ml={[0, 0, '40px']}
-          mt={['20px', '20px', isSide ? '20px' : 0]}
-          mb={['8px', '8px', 0]}
-        >
-          {t('How to use Helix Bridger (xRING, KTON)')}
-        </LinkExternal>
-        <LinkExternal
-          id="darwiniaBridge"
-          href="https://cbridge.celer.network/"
-          ml={[0, 0, '40px']}
-          mt={['20px', '20px', isSide ? '20px' : 0]}
-          mb={['8px', '8px', 0]}
-        >
-          {t('How to use Celer cBridge (USDC, USDT)')}
-        </LinkExternal>
-      </Flex>
+      {CHAIN_ID === ChainId.MAINNET ? (
+        <Flex flexDirection={isSide ? 'column' : ['column', 'column', 'row']} alignItems="center">
+          <LinkExternal
+            id="darwiniaBridge"
+            href="https://helixbridge.app/apps"
+            ml={[0, 0, '40px']}
+            mt={['20px', '20px', isSide ? '20px' : 0]}
+            mb={['8px', '8px', 0]}
+          >
+            {t('How to use Helix Bridger (xRING, KTON)')}
+          </LinkExternal>
+          <LinkExternal
+            id="darwiniaBridge"
+            href="https://cbridge.celer.network/"
+            ml={[0, 0, '40px']}
+            mt={['20px', '20px', isSide ? '20px' : 0]}
+            mb={['8px', '8px', 0]}
+          >
+            {t('How to use Celer cBridge (USDC, USDT)')}
+          </LinkExternal>
+        </Flex>
+      ) : null}
+
       {isSide && <Flex flexGrow={1} />}
       {/* <Flex
         flexGrow={isSide ? 0 : 1}
