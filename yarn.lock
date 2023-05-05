@@ -2863,10 +2863,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@snowswap/sdk@2.5.0":
-  version "2.5.0"
-  resolved "https://registry.npmjs.org/@snowswap/sdk/-/sdk-2.5.0.tgz#166c14424e385e0eef368a9bd55df5a8039d4afa"
-  integrity sha512-hcbGBABJF1somUWE9G6PgFlKAcctyzi5ReQ9MDTFm9/Muno3KKex6oRSI7KOSKlDp287BW8sXdujy7amratcbg==
+"@snowswap/sdk@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/@snowswap/sdk/-/sdk-3.0.0.tgz#714c6294802aaaa07666dbbb8b50537ccef5619a"
+  integrity sha512-8+QYDUOvRvtwj2V1NsUbNDnORxyQJZQ4qNYgb8bF4bVvipwnKBbM8xJuTKYDhnY0Genp9Ta048O/OclMixA91Q==
   dependencies:
     "@pancakeswap-libs/pancake-swap-core" "^0.1.0"
     big.js "^5.2.2"
