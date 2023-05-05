@@ -16,7 +16,7 @@
       "address": "0xF436Ae756f46F2ac547A870c71898eA5915F2F9E",
       "chainId": 256,
       "decimals": 18,
-      "logoURI": "/images/tokens/0xF436Ae756f46F2ac547A870c71898eA5915F2F9E.svg"
+      "logoURI": "/images/tokens/256/0xF436Ae756f46F2ac547A870c71898eA5915F2F9E.svg"
     },
     {
       "name": "Darwinia Network Native Token",
@@ -24,15 +24,15 @@
       "address": "0xc8F2eC4c01AD7cDF27431983546da0c35E40237c",
       "chainId": 256,
       "decimals": 18,
-      "logoURI": "/images/tokens/0xc8F2eC4c01AD7cDF27431983546da0c35E40237c.svg"
+      "logoURI": "/images/tokens/256/0xc8F2eC4c01AD7cDF27431983546da0c35E40237c.svg"
     },
     {
-      "name": "WCRAB Token",
+      "name": "Wrapped CRAB",
       "symbol": "WCRAB",
       "address": "0x2D2b97EA380b0185e9fDF8271d1AFB5d2Bf18329",
       "chainId": 44,
       "decimals": 18,
-      "logoURI": "/images/tokens/0x2D2b97EA380b0185e9fDF8271d1AFB5d2Bf18329.svg"
+      "logoURI": "/images/tokens/44/0x2D2b97EA380b0185e9fDF8271d1AFB5d2Bf18329.svg"
     },
     {
       "name": "Darwinia Network Native Token (From Darwinia Network)",
@@ -40,7 +40,7 @@
       "address": "0x7399Ea6C9d35124d893B8d9808930e9d3F211501",
       "chainId": 44,
       "decimals": 9,
-      "logoURI": "/images/tokens/0x7399Ea6C9d35124d893B8d9808930e9d3F211501.svg"
+      "logoURI": "/images/tokens/44/0x7399Ea6C9d35124d893B8d9808930e9d3F211501.svg"
     },
     {
       "name": "Wrapped CKTON (Classic)",
@@ -48,7 +48,7 @@
       "address": "0x159933C635570D5042723359fbD1619dFe83D3f3",
       "chainId": 44,
       "decimals": 18,
-      "logoURI": "/images/tokens/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
+      "logoURI": "/images/tokens/44/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
     },
     {
       "name": "cBridge - USD Coin",
@@ -56,7 +56,7 @@
       "address": "0x6a2d262D56735DbA19Dd70682B39F6bE9a931D98",
       "chainId": 44,
       "decimals": 6,
-      "logoURI": "/images/tokens/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
+      "logoURI": "/images/tokens/44/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
     },
     {
       "name": "cBridge - USD Coin",
@@ -64,7 +64,7 @@
       "address": "0x81ECac0D6Be0550A00FF064a4f9dd2400585FE9c",
       "chainId": 44,
       "decimals": 6,
-      "logoURI": "/images/tokens/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
+      "logoURI": "/images/tokens/44/0x159933C635570D5042723359fbD1619dFe83D3f3.svg"
     },
     {
       "name": "Darwinia Network Native Token (From Darwinia Network)",
@@ -72,7 +72,7 @@
       "address": "0x273131F7CB50ac002BDd08cA721988731F7e1092",
       "chainId": 44,
       "decimals": 18,
-      "logoURI": "/images/tokens/0x7399Ea6C9d35124d893B8d9808930e9d3F211501.svg"
+      "logoURI": "/images/tokens/44/0x7399Ea6C9d35124d893B8d9808930e9d3F211501.svg"
     },
     {
       "name": "Darwinia Commitment Token (From Darwinia Network)",
@@ -80,7 +80,7 @@
       "address": "0x0000000000000000000000000000000000000402",
       "chainId": 44,
       "decimals": 18,
-      "logoURI": "/images/tokens/0x0000000000000000000000000000000000000402.svg"
+      "logoURI": "/images/tokens/44/0x0000000000000000000000000000000000000402.svg"
     },
     {
       "name": "Wrapped RING",
@@ -88,7 +88,7 @@
       "address": "0xE7578598Aac020abFB918f33A20faD5B71d670b4",
       "chainId": 46,
       "decimals": 18,
-      "logoURI": "/images/tokens/0xF436Ae756f46F2ac547A870c71898eA5915F2F9E.svg"
+      "logoURI": "/images/tokens/46/0xF436Ae756f46F2ac547A870c71898eA5915F2F9E.svg"
     },
     {
       "name": "Darwinia Commitment Token",
@@ -96,7 +96,15 @@
       "address": "0x0000000000000000000000000000000000000402",
       "chainId": 46,
       "decimals": 18,
-      "logoURI": "/images/tokens/0x0000000000000000000000000000000000000402.svg"
+      "logoURI": "/images/tokens/46/0x0000000000000000000000000000000000000402.svg"
+    },
+    {
+      "name": "Wrapped Crab[Crab Chain> (xWCRAB)",
+      "symbol": "xWCRAB",
+      "address": "0x656567Eb75b765FC320783cc6EDd86bD854b2305",
+      "chainId": 46,
+      "decimals": 18,
+      "logoURI": "/images/tokens/46/0x656567Eb75b765FC320783cc6EDd86bD854b2305.svg"
     }
   ]
 }

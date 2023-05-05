@@ -1,11 +1,10 @@
-import { Currency, CurrencyAmount, JSBI, Token, TokenAmount } from '@snowswap/sdk'
+import { Currency, CurrencyAmount, JSBI, Token, TokenAmount, ETHER } from '@snowswap/sdk'
 import { useMemo } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import ERC20_INTERFACE from 'config/abi/erc20'
 import { useAllTokens } from 'hooks/Tokens'
 import { useMulticallContract } from 'hooks/useContract'
 import { isAddress } from 'utils'
-import { ETHER } from 'config'
 import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
 
 /**

@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, JSBI, Pair, Percent, Price, TokenAmount } from '@snowswap/sdk'
+import { Currency, CurrencyAmount, JSBI, Pair, Percent, Price, TokenAmount, ETHER } from '@snowswap/sdk'
 import { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -7,7 +7,6 @@ import useTotalSupply from 'hooks/useTotalSupply'
 
 import { useTranslation } from 'contexts/Localization'
 import { wrappedCurrency, wrappedCurrencyAmount } from 'utils/wrappedCurrency'
-import { ETHER } from 'config'
 import { AppDispatch, AppState } from '../index'
 import { tryParseAmount } from '../swap/hooks'
 import { useCurrencyBalances } from '../wallet/hooks'

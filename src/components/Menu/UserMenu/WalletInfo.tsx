@@ -35,8 +35,8 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ hasLowBnbBalance, onDismiss }) 
       {hasLowBnbBalance && (
         <Message variant="warning" mb="24px">
           <Box>
-            <Text fontWeight="bold">{t('CRAB Balance Low')}</Text>
-            <Text as="p">{t('You need CRAB for transaction fees.')}</Text>
+            <Text fontWeight="bold">{t('CRAB Balance Low', { token: NATIVE_TOKEN_SYMBOL })}</Text>
+            <Text as="p">{t(`You need ${NATIVE_TOKEN_SYMBOL} for transaction fees.`)}</Text>
           </Box>
         </Message>
       )}

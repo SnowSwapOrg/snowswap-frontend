@@ -1,5 +1,4 @@
-import { Currency, Token } from '@snowswap/sdk'
-import { ETHER } from 'config'
+import { Currency, Token, ETHER } from '@snowswap/sdk'
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import useHttpLocations from '../../hooks/useHttpLocations'

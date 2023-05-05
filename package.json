@@ -36,7 +36,7 @@
     "@binance-chain/bsc-connector": "^1.0.0",
     "@ethersproject/experimental": "^5.0.1",
     "@reduxjs/toolkit": "^1.5.0",
-    "@snowswap/sdk": "^2.4.3",
+    "@snowswap/sdk": "2.5.0",
     "@snowswap/uikit": "^0.60.3",
     "@types/multicodec": "^1.0.0",
     "@types/node": "^13.13.5",

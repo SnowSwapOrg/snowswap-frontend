@@ -12,7 +12,7 @@ import { get } from 'lodash'
  * @returns https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt
  */
 export function useCallWithGasPrice() {
-  const gasPrice = useGasPrice()
+  // const gasPrice = useGasPrice()
 
   const callWithGasPrice = useCallback(
     async (
@@ -22,16 +22,13 @@ export function useCallWithGasPrice() {
       overrides: CallOverrides = null,
     ): Promise<ethers.providers.TransactionResponse> => {
       const contractMethod = get(contract, methodName)
-      const hasManualGasPriceOverride = overrides?.gasPrice
+      // const hasManualGasPriceOverride = overrides?.gasPrice
 
-      const tx = await contractMethod(
-        ...methodArgs,
-        hasManualGasPriceOverride ? { ...overrides } : { ...overrides, gasPrice },
-      )
+      const tx = await contractMethod(...methodArgs, { ...overrides })
 
       return tx
     },
-    [gasPrice],
+    [],
   )
 
   return { callWithGasPrice }

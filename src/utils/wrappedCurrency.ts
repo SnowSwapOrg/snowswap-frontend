@@ -1,5 +1,4 @@
-import { ChainId, Currency, CurrencyAmount, Token, TokenAmount, WETH } from '@snowswap/sdk'
-import { ETHER } from 'config'
+import { ChainId, Currency, CurrencyAmount, Token, TokenAmount, WETH, ETHER } from '@snowswap/sdk'
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   return chainId && currency === ETHER ? WETH[chainId] : currency instanceof Token ? currency : undefined

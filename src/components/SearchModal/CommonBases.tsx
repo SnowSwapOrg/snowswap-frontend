@@ -1,10 +1,10 @@
 import React from 'react'
-import { ChainId, Currency, currencyEquals, Token } from '@snowswap/sdk'
+import { ChainId, Currency, currencyEquals, Token, ETHER } from '@snowswap/sdk'
 import { Text } from '@snowswap/uikit'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 
-import { ETHER, NATIVE_TOKEN_SYMBOL } from 'config'
+import { NATIVE_TOKEN_SYMBOL } from 'config'
 import { SUGGESTED_BASES } from '../../config/constants'
 import { AutoColumn } from '../Layout/Column'
 import QuestionHelper from '../QuestionHelper'

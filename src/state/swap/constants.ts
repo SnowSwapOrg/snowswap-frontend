@@ -1,6 +1,6 @@
 import { NATIVE_TOKEN_SYMBOL } from 'config'
 
-// BNB
+// Native token
 export const DEFAULT_INPUT_CURRENCY = NATIVE_TOKEN_SYMBOL
-// BUSD
-export const DEFAULT_OUTPUT_CURRENCY = ''
+// output
+export const DEFAULT_OUTPUT_CURRENCY = '0x273131F7CB50ac002BDd08cA721988731F7e1092'

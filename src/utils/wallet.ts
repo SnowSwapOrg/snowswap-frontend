@@ -1,6 +1,6 @@
 // Set of helper functions to facilitate wallet setup
 
-import { BASE_BSC_SCAN_URL, BASE_URL, CHAIN_NAME, NATIVE_TOKEN_NAME, NATIVE_TOKEN_SYMBOL } from 'config'
+import { BASE_BSC_SCAN_URL, BASE_URL, CHAIN_NAME, NATIVE_TOKEN_NAME, NATIVE_TOKEN_SYMBOL, CHAIN_ID } from 'config'
 import { nodes } from './getRpcUrl'
 
 /**
@@ -55,7 +55,7 @@ export const registerToken = async (tokenAddress: string, tokenSymbol: string, t
         address: tokenAddress,
         symbol: tokenSymbol,
         decimals: tokenDecimals,
-        image: `${BASE_URL}/images/tokens/${tokenAddress}.png`,
+        image: `${BASE_URL}/images/tokens/${CHAIN_ID}/${tokenAddress}.png`,
       },
     },
   })

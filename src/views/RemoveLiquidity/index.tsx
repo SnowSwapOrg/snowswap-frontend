@@ -59,7 +59,7 @@ export default function RemoveLiquidity({
   )
 
   const { t } = useTranslation()
-  const gasPrice = useGasPrice()
+  // const gasPrice = useGasPrice()
 
   // burn state
   const { independentField, typedValue } = useBurnState()
@@ -201,8 +201,7 @@ export default function RemoveLiquidity({
 
     let methodNames: string[]
     let args: Array<string | string[] | number | boolean>
-    // eslint-disable-next-line no-debugger
-    debugger
+
     // we have approval, use normal remove liquidity
     if (approval === ApprovalState.APPROVED) {
       // removeLiquidityETH
@@ -295,7 +294,7 @@ export default function RemoveLiquidity({
       setAttemptingTxn(true)
       await router[methodName](...args, {
         gasLimit: safeGasEstimate,
-        gasPrice,
+        // gasPrice,
       })
         .then((response: TransactionResponse) => {
           setAttemptingTxn(false)

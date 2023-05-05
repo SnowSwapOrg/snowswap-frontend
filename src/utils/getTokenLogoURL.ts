@@ -1,7 +1,7 @@
-import { NATIVE_TOKEN_SYMBOL } from 'config'
+import { NATIVE_TOKEN_SYMBOL, CHAIN_ID } from 'config'
 
-const getTokenLogoURL = (address: string) => `/images/tokens/${address}.png`
+const getTokenLogoURL = (address: string) => `/images/tokens/${CHAIN_ID}/${address}.png`
 
-export const getNativeTokenLogoURL = () => `/images/tokens/${NATIVE_TOKEN_SYMBOL}.svg`
+export const getNativeTokenLogoURL = () => `/images/tokens/${CHAIN_ID}/${NATIVE_TOKEN_SYMBOL}.svg`
 
 export default getTokenLogoURL

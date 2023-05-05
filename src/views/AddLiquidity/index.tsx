@@ -49,7 +49,7 @@ export default function AddLiquidity({
   const { account, chainId, library } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
   const { t } = useTranslation()
-  const gasPrice = useGasPrice()
+  // const gasPrice = useGasPrice()
 
   const currencyA = useCurrency(currencyIdA)
   const currencyB = useCurrency(currencyIdB)
@@ -182,7 +182,7 @@ export default function AddLiquidity({
         method(...args, {
           ...(value ? { value } : {}),
           gasLimit: calculateGasMargin(estimatedGasLimit),
-          gasPrice,
+          // gasPrice,
         }).then((response) => {
           setAttemptingTxn(false)
 

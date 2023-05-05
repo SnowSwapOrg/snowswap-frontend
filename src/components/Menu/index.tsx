@@ -41,12 +41,12 @@ const Menu = (props) => {
       buyCakeLabel={t('Buy CAKE')}
       userChainIds={[
         {
-          text: 'Darwinia Smart Chain',
+          text: 'Darwinia Chain',
           link: 'https://darwinia.snowswap.xyz',
           chainId: ChainId.DARWINIA,
         },
         {
-          text: 'Crab Smart Chain',
+          text: 'Crab Chain',
           link: 'https://snowswap.xyz',
           chainId: ChainId.MAINNET,
         },

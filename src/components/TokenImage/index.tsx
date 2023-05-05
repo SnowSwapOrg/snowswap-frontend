@@ -7,7 +7,7 @@ import {
 } from '@snowswap/uikit'
 import tokens from 'config/constants/tokens'
 import { Token } from '@snowswap/sdk'
-import { NATIVE_TOKEN_SYMBOL } from 'config'
+import { NATIVE_TOKEN_SYMBOL, CHAIN_ID } from 'config'
 
 interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc' | 'secondarySrc'> {
   primaryToken: Token
@@ -16,7 +16,7 @@ interface TokenPairImageProps extends Omit<UIKitTokenPairImageProps, 'primarySrc
 
 const getImageUrlFromToken = (token: Token) => {
   const address = token.symbol === NATIVE_TOKEN_SYMBOL ? tokens.wbnb.address : token.address
-  return `/images/tokens/${address}.svg`
+  return `/images/tokens/${CHAIN_ID}/${address}.svg`
 }
 
 export const TokenPairImage: React.FC<TokenPairImageProps> = ({ primaryToken, secondaryToken, ...props }) => {

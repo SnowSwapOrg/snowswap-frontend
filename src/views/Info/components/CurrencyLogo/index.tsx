@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { isAddress } from 'utils'
+import { CHAIN_ID } from 'config'
 import LogoLoader from './LogoLoader'
 
 const StyledLogo = styled(LogoLoader)<{ size: string }>`
@@ -19,7 +20,7 @@ export const CurrencyLogo: React.FC<{
   const src = useMemo(() => {
     const checksummedAddress = isAddress(address)
     if (checksummedAddress) {
-      return `/images/tokens/${address}.png`
+      return `/images/tokens/${CHAIN_ID}/${address}.png`
     }
     return null
   }, [address])

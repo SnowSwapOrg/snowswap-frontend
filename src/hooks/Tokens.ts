@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { parseBytes32String } from '@ethersproject/strings'
-import { Currency, Token, currencyEquals } from '@snowswap/sdk'
+import { Currency, Token, currencyEquals, ETHER } from '@snowswap/sdk'
 import { useMemo } from 'react'
 import { arrayify } from 'ethers/lib/utils'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { ETHER, NATIVE_TOKEN_SYMBOL } from 'config'
+import { NATIVE_TOKEN_SYMBOL } from 'config'
 import {
   TokenAddressMap,
   useDefaultTokenList,
