@@ -1,0 +1,18 @@
+{
+  "short_name": "Snowswap",
+  "name": "Snowswap",
+  "description": "Decentralized Swap",
+  "homepage_url": "",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1FC7D4",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
