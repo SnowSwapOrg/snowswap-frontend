@@ -168,6 +168,13 @@ export function useSingleTokenSwapInfoFromInput(
   const parsedAmount = tryParseAmount('1', inputCurrency ?? undefined)
 
   const bestTradeExactIn = useTradeExactIn(parsedAmount, outputCurrency ?? undefined)
+
+  if (inputCurrencyId === outputCurrencyId)
+    return {
+      [token0Address]: 1,
+      [token1Address]: 1,
+    }
+
   if (!inputCurrency || !outputCurrency || !bestTradeExactIn) {
     return null
   }

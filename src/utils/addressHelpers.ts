@@ -21,3 +21,7 @@ export const getVaultPoolAddress = (vaultKey: VaultKey) => {
 export const getFarmChefAddress = () => {
   return getAddress(addresses.farmChef)
 }
+
+export const isSameAddress = (address: string, other: string) => {
+  return address.toLowerCase() === other.toLowerCase()
+}
