@@ -130,29 +130,17 @@ const StyledBalanceWithLink = styled.span`
 const FarmCard: React.FC<Props> = ({ farm }) => {
   const { t } = useTranslation()
   const { isDesktop, isMobile } = useMatchBreakpoints()
-  const isExpired = (farm.startTime + farm.rewardsDuration) / 1000 < Date.now()
-
+  const isExpired = farm.startTime + farm.rewardsDuration < Date.now() / 1000
   const { account, chainId, library } = useActiveWeb3React()
 
   const [stakeValue, setStakeValue] = useState<string>('')
   const [unstakeValue, setUnstakeValue] = useState<string>('')
 
-  const tokenPrice = useSingleTokenSwapInfoFromInput(
-    farm.token.address,
-    farm.token.address.toLowerCase() === tokens.usdt.address.toLowerCase() ? tokens.usdc.address : tokens.usdt.address,
-  )
-  const quoteTokenPrice = useSingleTokenSwapInfoFromInput(
-    farm.quoteToken.address,
-    farm.quoteToken.address.toLowerCase() === tokens.usdt.address.toLowerCase()
-      ? tokens.usdc.address
-      : tokens.usdt.address,
-  )
-  const rewardTokenPrice = useSingleTokenSwapInfoFromInput(
-    farm.rewardToken.address,
-    farm.rewardToken.address.toLowerCase() === tokens.usdt.address.toLowerCase()
-      ? tokens.usdc.address
-      : tokens.usdt.address,
-  )
+  const tokenPrice = useSingleTokenSwapInfoFromInput(farm.token.address, tokens.wbnb.address)
+
+  const quoteTokenPrice = useSingleTokenSwapInfoFromInput(farm.quoteToken.address, tokens.wbnb.address)
+
+  const rewardTokenPrice = useSingleTokenSwapInfoFromInput(farm.rewardToken.address, tokens.wbnb.address)
 
   const tokenCurrency = useCurrency(farm.token.address)
   const quoteTokenCurrency = useCurrency(farm.quoteToken.address)
@@ -162,8 +150,9 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
   const quoteTokenReserve = pair?.reserve0.token.address === farm.token.address ? pair?.reserve1 : pair?.reserve0
 
   const tokenValue = useMemo(() => {
-    if (tokenPrice && tokenPrice[farm.token.address.toLowerCase()] && tokenReserve) {
-      const price = new BigNumberJs(tokenPrice[farm.token.address.toLowerCase()])
+    const hasPrice = tokenPrice && tokenPrice[farm.token.address.toLowerCase()]
+    if (hasPrice && tokenReserve) {
+      const price = hasPrice ? new BigNumberJs(tokenPrice[farm.token.address.toLowerCase()]) : new BigNumberJs(1)
       const amount = new BigNumberJs(
         formatBigNumber(
           BigNumber.from(tokenReserve.raw.toString()),
@@ -177,8 +166,11 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
   }, [farm.token.address, tokenPrice, tokenReserve])
 
   const quoteTokenValue = useMemo(() => {
-    if (quoteTokenPrice && quoteTokenPrice[farm.quoteToken.address.toLowerCase()] && quoteTokenReserve) {
-      const price = new BigNumberJs(quoteTokenPrice[farm.quoteToken.address.toLowerCase()])
+    const hasPrice = quoteTokenPrice && quoteTokenPrice[farm.quoteToken.address.toLowerCase()]
+    if (hasPrice && quoteTokenReserve) {
+      const price = hasPrice
+        ? new BigNumberJs(quoteTokenPrice[farm.quoteToken.address.toLowerCase()])
+        : new BigNumberJs(1)
       const amount = new BigNumberJs(
         formatBigNumber(
           BigNumber.from(quoteTokenReserve.raw.toString()),
@@ -192,8 +184,11 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
   }, [farm.quoteToken.address, quoteTokenPrice, quoteTokenReserve])
 
   const rewardTokenValue = useMemo(() => {
-    if (rewardTokenPrice && rewardTokenPrice[farm.rewardToken.address.toLowerCase()]) {
-      const price = new BigNumberJs(rewardTokenPrice[farm.rewardToken.address.toLowerCase()])
+    const hasPrice = rewardTokenPrice && rewardTokenPrice[farm.rewardToken.address.toLowerCase()]
+
+    if (hasPrice) {
+      const price = new BigNumberJs(hasPrice ? rewardTokenPrice[farm.rewardToken.address.toLowerCase()] : 1)
+
       const amount = new BigNumberJs(
         formatBigNumber(BigNumber.from(farm.rewardsAmount), farm.rewardToken.decimals, farm.rewardToken.decimals),
       )
@@ -203,7 +198,6 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
   }, [farm.rewardToken.address, farm.rewardToken.decimals, farm.rewardsAmount, rewardTokenPrice])
 
   const pairValueInPool = !tokenValue.eq(0) ? tokenValue.times(2) : quoteTokenValue.times(2)
-  // console.log("🚀 ~ file: FarmCard.tsx ~ line 192 ~ pairValueInPool", tokenValue.toString(),quoteTokenValue.toString(), pairValueInPool.toString())
 
   const stakerAddress = farm.poolAddress
 
@@ -448,7 +442,7 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
               </Flex>
               <Box pb="2rem">
                 <Label>{t('Earliest Start Time')}:</Label>
-                <Text>{new Date(farm.startTime).toLocaleDateString(undefined)}</Text>
+                <Text>{new Date(farm.startTime * 1000).toLocaleDateString(undefined)}</Text>
                 <Label>{t('Rewards Duration')}:</Label>
                 <Text>{formatTimePeriod(getTimePeriods(farm.rewardsDuration))}</Text>
                 <Label>{t('APR')}:</Label>

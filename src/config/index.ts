@@ -12,9 +12,9 @@ const chainId = parseInt(process.env.REACT_APP_CHAIN_ID, 10)
 export const BSC_BLOCK_TIME = 3
 
 export const BASE_BSC_SCAN_URLS = {
-  [ChainId.MAINNET]: 'https://crab.subview.xyz',
+  [ChainId.MAINNET]: 'https://crab.subscan.io',
   [ChainId.TESTNET]: 'https://testnet.hecoinfo.com',
-  [ChainId.DARWINIA]: 'https://darwinia.subview.xyz',
+  [ChainId.DARWINIA]: 'https://darwinia.subscan.io',
 }
 
 // CAKE_PER_BLOCK details

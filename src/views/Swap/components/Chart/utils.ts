@@ -26,9 +26,9 @@ export const getTokenAddress = (tokenAddress: undefined | string) => {
   if (!tokenAddress) {
     return ''
   }
-  const lowerCaseAddress = tokenAddress.toUpperCase()
+  const lowerCaseAddress = tokenAddress.toLowerCase()
   if (lowerCaseAddress === NATIVE_TOKEN_SYMBOL) {
-    return BNB_ADDRESS
+    return BNB_ADDRESS.toLowerCase()
   }
 
   return lowerCaseAddress
