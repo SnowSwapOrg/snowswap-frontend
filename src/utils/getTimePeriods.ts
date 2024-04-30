@@ -45,7 +45,7 @@ const getTimePeriods = (seconds: number) => {
     delta -= timeLeft.minutes * MINUTE_IN_SECONDS
   }
 
-  timeLeft.seconds = delta
+  timeLeft.seconds = parseInt(delta.toString())
 
   return timeLeft
 }
