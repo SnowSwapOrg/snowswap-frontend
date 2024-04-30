@@ -131,6 +131,7 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
   const { t } = useTranslation()
   const { isDesktop, isMobile } = useMatchBreakpoints()
   const isExpired = farm.startTime + farm.rewardsDuration < Date.now() / 1000
+  const leftDuration = farm.startTime + farm.rewardsDuration - Date.now() / 1000
   const { account, chainId, library } = useActiveWeb3React()
 
   const [stakeValue, setStakeValue] = useState<string>('')
@@ -445,6 +446,12 @@ const FarmCard: React.FC<Props> = ({ farm }) => {
                 <Text>{new Date(farm.startTime * 1000).toLocaleDateString(undefined)}</Text>
                 <Label>{t('Rewards Duration')}:</Label>
                 <Text>{formatTimePeriod(getTimePeriods(farm.rewardsDuration))}</Text>
+                {!isExpired && (
+                  <>
+                    <Label>{t('end in')}:</Label>
+                    <Text>{formatTimePeriod(getTimePeriods(leftDuration))}</Text>
+                  </>
+                )}
                 <Label>{t('APR')}:</Label>
                 <Text>
                   {apr.toFixed(2)}%{isExpired ? ' - Expired' : ''}

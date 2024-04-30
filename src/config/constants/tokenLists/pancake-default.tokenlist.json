@@ -105,6 +105,22 @@
       "chainId": 46,
       "decimals": 18,
       "logoURI": "/images/tokens/46/0x656567Eb75b765FC320783cc6EDd86bD854b2305.svg"
+    },
+    {
+      "name": "ahUSDT",
+      "symbol": "ahUSDT",
+      "address": "0x0000000000000000000000000000000000000403",
+      "chainId": 46,
+      "decimals": 6,
+      "logoURI": "/images/tokens/46/0x0000000000000000000000000000000000000402.svg"
+    },
+    {
+      "name": "ahPINK",
+      "symbol": "ahPINK",
+      "address": "0x0000000000000000000000000000000000000404",
+      "chainId": 46,
+      "decimals": 10,
+      "logoURI": "/images/tokens/46/0x0000000000000000000000000000000000000402.svg"
     }
   ]
 }
