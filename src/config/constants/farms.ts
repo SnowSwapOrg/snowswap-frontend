@@ -40,6 +40,22 @@ const farms: SerializedFarmConfig[] = [
   //   rewardsAmount: '7000000000000000000000000',
   // },
   {
+    pid: 4,
+    lpSymbol: 'CRAB-CKTON LP',
+    lpAddresses: {
+      44: '0x819891bE4586dDfc3399cfFc69d22CC40B913349',
+      46: '',
+      256: '',
+    },
+    token: serializedTokens.ckton,
+    quoteToken: serializedTokens.wbnb,
+    rewardToken: serializedTokens.wbnb,
+    poolAddress: '0x41965d8F028183419b12234045b22A98585C60d2',
+    startTime: 1720569600,
+    rewardsDuration: 15552000,
+    rewardsAmount: '1000000000000000000000000',
+  },
+  {
     pid: 3,
     lpSymbol: 'KTON-RING LP',
     lpAddresses: {

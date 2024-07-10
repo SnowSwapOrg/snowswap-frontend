@@ -55,6 +55,14 @@ export const mainnetTokens = {
     'cBridge - USD Coin',
     'https://cbridge.celer.network',
   ),
+  ckton: new Token(
+    MAINNET,
+    '0x0000000000000000000000000000000000000402',
+    18,
+    'CKTON',
+    'CKTON',
+    'https://darwinia.network',
+  ),
   testring: new Token(MAINNET, '0x9aC276FBcb568Eb9f4679B238efd1b6eA1898435', 9, 'testRING', 'testRING', ''),
 }
 
