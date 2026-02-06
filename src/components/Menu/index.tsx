@@ -38,17 +38,12 @@ const Menu = (props) => {
       subLinks={activeMenuItem?.hideSubNav ? [] : activeMenuItem?.items}
       activeItem={activeMenuItem?.href}
       activeSubItem={activeSubMenuItem?.href}
-      buyCakeLabel={t('Buy CAKE')}
+      buyCakeLabel={t('Buy RING')}
       userChainIds={[
         {
           text: 'Darwinia Chain',
-          link: 'https://darwinia.snowswap.xyz',
-          chainId: ChainId.DARWINIA,
-        },
-        {
-          text: 'Crab Chain',
           link: 'https://snowswap.xyz',
-          chainId: ChainId.MAINNET,
+          chainId: ChainId.DARWINIA,
         },
       ]}
       setUserChainId={setUserChainId}

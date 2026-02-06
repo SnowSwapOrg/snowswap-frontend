@@ -5,7 +5,7 @@
   "homepage": "https://snowswap.xyz",
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "PORT=3008 react-scripts start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider PORT=3008 react-scripts start",
     "startprod": "PORT=3009 react-scripts start",
     "build": "CI=false && GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test --testPathIgnorePatterns=/src/__tests__/config/",
